@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ContactApp</string>
+
+    <string name="main_fab_btn_description">FabBtn to add contact</string>
+    <string name="main_tab_title_contact">CONTACT</string>
+    <string name="main_tab_title_mypage">MY PAGE</string>
 </resources>
