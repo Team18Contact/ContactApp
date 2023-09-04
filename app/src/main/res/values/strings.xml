@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">ContactApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="main_fab_btn_description">FabBtn to add contact</string>
+    <string name="main_tab_title_contact">CONTACT</string>
+    <string name="main_tab_title_mypage">MY PAGE</string>
 </resources>
