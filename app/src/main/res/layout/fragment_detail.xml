@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#20222C"
+    tools:context=".DetailFragment">
+
+    <!-- 디테일, 마이페이지  -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_photo"
+        android:layout_width="266dp"
+        android:layout_height="266dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/ic_launcher_background"
+        android:text="@string/hello_blank_fragment"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_messageButton"
+        android:layout_width="175dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:background="#FED36A"
+        android:gravity="center"
+        android:text="MESSAGE"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+
+
+        app:layout_constraintTop_toBottomOf="@id/img_photo" />
+
+    <TextView
+        android:id="@+id/tv_callButton"
+        android:layout_width="175dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:background="#455A64"
+        android:gravity="center"
+        android:text="CALL"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_photo"
+
+
+
+
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
