@@ -35,6 +35,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:src="@drawable/ic_add_contact"
+        app:backgroundTint="@color/contact_yellow"
+        app:shapeAppearanceOverlay="@style/btnFab"
         android:contentDescription="@string/main_fab_btn_description"
         app:layout_constraintBottom_toTopOf="@id/tabLayout"
         app:layout_constraintEnd_toEndOf="parent" />
