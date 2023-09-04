@@ -26,11 +26,23 @@ class ContactAdapter (val models: MutableList<ContactModel>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
+        holder.itemView.setOnClickListener {
+            itemClick?.onClick(it, position)
+        }
+
+
+
+
+
+
         holder.profileImg.setBackgroundResource(models[position].profile)
         holder.name.text = models[position].name
 
 
         //holder.like.setImageResource(R.drawable.ic_heart)
+
+
+
 
     }
 
