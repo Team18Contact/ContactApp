@@ -4,6 +4,7 @@
     <string name="main_fab_btn_description">FabBtn to add contact</string>
     <string name="main_tab_title_contact">CONTACT</string>
     <string name="main_tab_title_mypage">MY PAGE</string>
+    <string name="main_toolbar_title">무빙 출연진 연락처</string>
 
     <string name="mypage_todo_edittext_hint">할일 추가하기</string>
     <string name="mypage_todo_textview_title">할일 목록</string>
@@ -62,5 +63,4 @@
     <string name="inputPosition">직책을 입력하세요.</string>
     <string name="phoneNumber">전화번호</string>
     <string name="inputPhoneNumber">전화번호를 입력하세요.</string>
-
 </resources>
