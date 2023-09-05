@@ -38,6 +38,7 @@
     <string name="noticeTeam">Welcome Back!</string>
     <string name="emailaddress">Email Address</string>
     <string name="password">Password</string>
+    <string name="tel">TelPhone</string>
     <string name="logIn">Log In</string>
     <string name="signUp">Don\'t you have an account? Sign UP</string>
     <string name="checkIDPassword">아이디/비밀번호를 확인해주세요</string>
@@ -61,6 +62,7 @@
     <string name="inputID">이메일을 입력하세요.</string>
     <string name="inputPassword">비밀번호를 입력하세요.</string>
     <string name="inputPosition">(입력 안해도 됨)</string>
+    <string name="inputTel">전화번호를 입력하세요.</string>
     <string name="locale">Locale</string>
     <string name="inputLocale">지역명</string>
 </resources>
