@@ -7,21 +7,15 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="141dp"
-        android:layout_marginTop="-140dp"
-        android:src="@drawable/daytask" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="-100dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="-90dp"
         android:gravity="center"
         android:text="@string/noticeTeam"
         android:textColor="#FFFFFF"
-        android:textSize="25sp"
+        android:textSize="45sp"
         android:textStyle="bold" />
 
     <TextView
@@ -72,29 +66,22 @@
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="#FED36A"
         android:radius="0dp"
         android:text="@string/logIn"
         android:textColor="#000000" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="Or continue with"
-        android:textColor="#8CAAB9" />
-
     <Button
         android:id="@+id/buttonSignUp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="52dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_background2_rect"
         android:radius="0dp"
         android:text="@string/signUp"
-        android:textColor="#FFFFFF" />
+        android:textColor="#000000" />
 
 
 </LinearLayout>
