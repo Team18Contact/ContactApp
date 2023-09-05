@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contactapp.databinding.ContactRecyclerviewItemBinding
 
-class ContactRecyclerViewAdapter (val models: MutableList<ContactModel>) : RecyclerView.Adapter<ContactRecyclerViewAdapter.Holder>(){
+class ContactRecyclerViewAdapter (private val contactList: MutableList<ContactModel>) : RecyclerView.Adapter<ContactRecyclerViewAdapter.Holder>(){
 
     interface ItemClick {
         fun onClick(view : View, position : Int)
@@ -22,21 +22,19 @@ class ContactRecyclerViewAdapter (val models: MutableList<ContactModel>) : Recyc
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.itemView.setOnClickListener {
-            itemClick?.onClick(it, position)
+        holder.bind(contactList[position])
+    }
+
+    override fun getItemCount(): Int = contactList.size
+
+    inner class Holder(private val binding: ContactRecyclerviewItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(contact: ContactModel) = with(binding) {
+            itemView.setOnClickListener {
+                itemClick?.onClick(it, adapterPosition)
+            }
+
+            imgProfile.setImageResource(contact.profile)
+            txtInfo.text = "${contact.name} (${contact.locale}) - ${contact.ability}"
         }
-
-        holder.profileImg.setBackgroundResource(models[position].profile)
-        holder.name.text = models[position].name
-    }
-
-    override fun getItemCount(): Int {
-        return models.size
-    }
-
-    inner class Holder(val binding: ContactRecyclerviewItemBinding) : RecyclerView.ViewHolder(binding.root) { //
-        val profileImg = binding.icItem
-        val name = binding.tvItemName
-        val like = binding.ivLike
     }
 }

@@ -1,77 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:apps="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="140dp">
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="8dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/CardView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:background="@drawable/border_item"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        apps:cardCornerRadius="100dp"
-        apps:cardElevation="0dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
         apps:layout_constraintBottom_toBottomOf="parent"
-        apps:layout_constraintEnd_toStartOf="@+id/cl_Item"
+        apps:layout_constraintEnd_toEndOf="parent"
         apps:layout_constraintStart_toStartOf="parent"
         apps:layout_constraintTop_toTopOf="parent">
-        <!-- apps:cardCornerRadius="30dp" image뷰에서 안하고 cardview로 가능-->
 
-        <ImageView
-            android:id="@+id/ic_Item"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_vertical"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            apps:cardCornerRadius="100dp"
+            apps:cardElevation="0dp">
 
-    </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/img_profile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_Item"
-        android:layout_width="210dp"
-        android:layout_height="40dp"
-        apps:layout_constraintBottom_toBottomOf="@+id/CardView"
-        apps:layout_constraintEnd_toEndOf="parent"
-        apps:layout_constraintStart_toEndOf="@+id/CardView"
-        apps:layout_constraintTop_toTopOf="parent">
+        </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/tv_ItemName"
-            android:layout_width="150dp"
+            android:id="@+id/txt_info"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:maxLines="2"
-            android:text=""
+            android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textColor="@color/white"
-            android:textSize="14sp"
-            apps:layout_constraintBottom_toBottomOf="parent"
-            apps:layout_constraintEnd_toEndOf="parent"
-            apps:layout_constraintStart_toStartOf="parent"
-            apps:layout_constraintTop_toTopOf="parent" />
+            android:textSize="18sp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-    <ImageView
-        android:id="@+id/iv_like"
-        android:layout_width="30dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="70dp"
-        android:src="@drawable/ic_empty_heart"
-        apps:layout_constraintBottom_toBottomOf="@+id/cl_Item"
-        apps:layout_constraintEnd_toEndOf="parent"
-        apps:layout_constraintStart_toEndOf="@+id/cl_Item"
-        apps:layout_constraintTop_toTopOf="@+id/cl_Item"
-        tools:ignore="MissingConstraints" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"
-        apps:layout_constraintBottom_toBottomOf="parent"
-        apps:layout_constraintEnd_toEndOf="parent"
-        apps:layout_constraintStart_toEndOf="parent" />
-
-
+        <ImageView
+            android:id="@+id/img_like"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_empty_heart" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
