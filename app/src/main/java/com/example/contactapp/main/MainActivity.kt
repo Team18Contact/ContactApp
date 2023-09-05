@@ -33,26 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         initView()
 
-        val checkName = intent.getStringExtra("userName") ?: "name"
-
-        Log.d("jiseong", checkName)
-
-//        val fragment = DetailFragment()
-//        val bundle = bundleOf(
-//            "key1" to checkName
-//        )
-//        fragment.arguments = bundle
-
-
-        val fragment = DetailFragment()
-        val bundle = bundleOf(
-            "key1" to checkName
-        )
-
-        fragment.arguments = bundle
-
-
-
+//
 
 
 

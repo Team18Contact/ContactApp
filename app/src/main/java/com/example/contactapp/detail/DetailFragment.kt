@@ -25,6 +25,8 @@ class DetailFragment : Fragment() {
     ): View? {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
 
+
+
         return binding.root
     }
 
@@ -34,11 +36,11 @@ class DetailFragment : Fragment() {
         initView()
 
 
+
+
     }
 
     private fun initView() = with(binding) {
-
-
         imgPhoto.setImageDrawable(data?.let {
             ResourcesCompat.getDrawable(
                 resources,
@@ -49,6 +51,7 @@ class DetailFragment : Fragment() {
         tvName.text = data?.name
         tvPhoneNumber.text = data?.phoneNum
         tvEmail.text = data?.email
+
 
 
     }
