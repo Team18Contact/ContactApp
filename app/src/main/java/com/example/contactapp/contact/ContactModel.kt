@@ -14,6 +14,8 @@ data class ContactModel(
     val ability: String,
 ) : Parcelable
 
+
+
 object ContactModelDB {
     var dataList = mutableListOf<ContactModel>()
     init {
