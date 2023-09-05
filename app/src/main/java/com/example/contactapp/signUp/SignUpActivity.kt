@@ -18,7 +18,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private val idPattern = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)\$")
     private val pwPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#\$%^&+=]).{8,15}\$")
-    private val phonePattern = Pattern.compile("^[0-9]{10,11}\$")
+    private val phonePattern = Pattern.compile("^[가-힣a-zA-Z]*\$")
     private val namePattern = Pattern.compile("^[가-힣a-zA-Z]*\$")
 
     private var imgSet: Int = R.drawable.logo1 // 기본 값으로 초기화
@@ -70,7 +70,7 @@ class SignUpActivity : AppCompatActivity() {
                 val phone = s.toString()
                 val valid = phonePattern.matcher(phone).matches()
                 if (!valid) {
-                    et_phone.error = getString(R.string._10_11)
+                    et_phone.error = getString(R.string.kor)
                 }
             }
 
@@ -92,20 +92,20 @@ class SignUpActivity : AppCompatActivity() {
         })
 
         //이미지 초기화
-        val iv_logo = findViewById<ImageView>(R.id.imageView)
-        iv_logo.setOnClickListener {
-            imgSet = when ((1..6).random()) {
-                1 -> R.drawable.logo1
-                2 -> R.drawable.logo2
-                3 -> R.drawable.logo3
-                4 -> R.drawable.logo4
-                5 -> R.drawable.logo5
-                else -> R.drawable.logo1
-            }
-
-            iv_logo.setImageDrawable(ResourcesCompat.getDrawable(resources, imgSet, null))
-
-        }
+//        val iv_logo = findViewById<ImageView>(R.id.imageView)
+//        iv_logo.setOnClickListener {
+//            imgSet = when ((1..6).random()) {
+//                1 -> R.drawable.logo1
+//                2 -> R.drawable.logo2
+//                3 -> R.drawable.logo3
+//                4 -> R.drawable.logo4
+//                5 -> R.drawable.logo5
+//                else -> R.drawable.logo1
+//            }
+//
+//            iv_logo.setImageDrawable(ResourcesCompat.getDrawable(resources, imgSet, null))
+//
+//        }
 
         btn_signUp.setOnClickListener {
             val name = et_name.text.toString()
@@ -114,7 +114,7 @@ class SignUpActivity : AppCompatActivity() {
             val phone = et_phone.text.toString()
             val position = et_position.text.toString()
 
-            if (name.isBlank() || id.isBlank() || pw.isBlank() || phone.isBlank() || position.isBlank()) {
+            if (name.isBlank() || id.isBlank() || pw.isBlank() || phone.isBlank()) {
                 Toast.makeText(this, getString(R.string.info), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -141,7 +141,7 @@ class SignUpActivity : AppCompatActivity() {
             }
 
             if (!phoneValid) {
-                et_phone.error = getString(R.string._10_11)
+                et_phone.error = getString(R.string.kor)
                 return@setOnClickListener
             }
 

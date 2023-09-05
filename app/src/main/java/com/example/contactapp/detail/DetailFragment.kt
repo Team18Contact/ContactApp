@@ -9,6 +9,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.example.contactapp.contact.Constants
 import com.example.contactapp.contact.Constants.ITEM_OBJECT
 import com.example.contactapp.contact.ContactModel
+import com.example.contactapp.contact.ContactModelDB
 import com.example.contactapp.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
@@ -38,6 +39,8 @@ class DetailFragment : Fragment() {
 
 
 
+
+
     }
 
     private fun initView() = with(binding) {
@@ -48,9 +51,12 @@ class DetailFragment : Fragment() {
                 null
             )
         })
-        tvName.text = data?.name
+        val test = arguments?.getString("key")
+        tvName.text = data?.name ?: test
         tvPhoneNumber.text = data?.phoneNum
         tvEmail.text = data?.email
+        tvLocale.text = data?.locale
+        tvAbility.text = data?.ability
 
 
 
