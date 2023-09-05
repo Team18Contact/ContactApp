@@ -20,7 +20,7 @@ class SignUpActivity : AppCompatActivity() {
     private val pwPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#\$%^&+=]).{8,15}\$")
     private val phonePattern = Pattern.compile("^[가-힣a-zA-Z]*\$")
     private val namePattern = Pattern.compile("^[가-힣a-zA-Z]*\$")
-
+    private val telPattern = Pattern.compile("^[0-9]{10,11}\$")
     private var imgSet: Int = R.drawable.logo1 // 기본 값으로 초기화
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class SignUpActivity : AppCompatActivity() {
         val et_pw = findViewById<EditText>(R.id.et_pw)
         val et_phone = findViewById<EditText>(R.id.et_phone)
         val et_position = findViewById<EditText>(R.id.et_position)
-
+        val et_tel = findViewById<EditText>(R.id.et_tel)
         val btn_signUp = findViewById<Button>(R.id.btn_signupOk)
         val btn_signCancel = findViewById<Button>(R.id.btn_signupcancel)
 
@@ -71,6 +71,19 @@ class SignUpActivity : AppCompatActivity() {
                 val valid = phonePattern.matcher(phone).matches()
                 if (!valid) {
                     et_phone.error = getString(R.string.kor)
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        et_tel.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val tel = s.toString()
+                val valid = telPattern.matcher(tel).matches()
+                if (!valid) {
+                    et_tel.error = getString(R.string._10_11)
                 }
             }
 
