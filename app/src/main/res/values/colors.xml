@@ -6,6 +6,7 @@
     <color name="lightGray">#D9D9D9</color>
     <color name="blue">#3A75F4</color>
     <color name="contact_yellow">#FFFED36A</color>
+    <color name="contact_lightYellow">#FAEAC4</color>
     <color name="contact_darkGray">#FF455A64</color>
     <color name="contact_black">#FF20222C</color>
 </resources>

@@ -20,6 +20,10 @@ class MainViewPagerAdapter(fragmentActivity: FragmentActivity): FragmentStateAda
         fragments.add(MainTabs(DetailFragment(), R.string.main_tab_title_mypage))
     }
 
+    fun getFragment(position: Int): Fragment {
+        return fragments[position].fragment
+    }
+
     fun getTitle(position: Int): Int {
         return fragments[position].title
     }
