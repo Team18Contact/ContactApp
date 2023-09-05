@@ -2,10 +2,14 @@ package com.example.contactapp.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
+import com.example.contactapp.R
 import com.example.contactapp.contact.ContactListFragment
+import com.example.contactapp.contact.ContactModel
 import com.example.contactapp.databinding.ActivityMainBinding
+import com.example.contactapp.detail.DetailFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
@@ -13,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     private val viewPager2Adapter by lazy {
         MainViewPagerAdapter(this@MainActivity)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +26,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() = with(binding) {
+
+        val checkName = intent.getStringExtra("userName") ?: "name"
+        val checkTel = intent.getStringExtra("userTel") ?: "tel"
+        val checkPosition = intent.getStringExtra("userPosition") ?: "position"
+        val checkImage = intent.getIntExtra("userImage", 0)
+
+        val detailFragment = viewPager2Adapter.getFragment(1) as? DetailFragment
+        detailFragment?.setData(ContactModel(R.drawable.img_kds, checkName, checkTel, "01012345678", "asd@naver.com", checkPosition))
+
         viewPager2.adapter = viewPager2Adapter
 
         viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
@@ -43,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         }.attach()
 
         val contactListFragment = viewPager2Adapter.getFragment(0) as? ContactListFragment
-
         imgGridView.setOnClickListener {
             contactListFragment?.showGridView()
         }
