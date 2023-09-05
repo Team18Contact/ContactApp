@@ -2,7 +2,6 @@ package com.example.contactapp.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.example.contactapp.R

@@ -23,6 +23,12 @@ class ContactRecyclerViewAdapter (private val contactList: MutableList<ContactMo
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.bind(contactList[position])
+
+        if(position % 2 == 0) {
+            holder.itemView.layoutDirection = View.LAYOUT_DIRECTION_LTR
+        } else {
+            holder.itemView.layoutDirection = View.LAYOUT_DIRECTION_RTL
+        }
     }
 
     override fun getItemCount(): Int = contactList.size
