@@ -48,7 +48,7 @@
             android:background="#455A64"
             android:ems="10"
             android:hint="@string/name"
-            android:padding="16dp"
+            android:padding="12dp"
             android:inputType="text"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
@@ -58,7 +58,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
         <TextView
-            android:id="@+id/tv_phone"
+            android:id="@+id/tv_locale"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/et_pw" />
 
         <EditText
-            android:id="@+id/et_phone"
+            android:id="@+id/et_locale"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="24dp"
@@ -90,10 +90,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_locale" />
 
         <TextView
-            android:id="@+id/tv_position"
+            android:id="@+id/tv_ability"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -106,10 +106,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_phone" />
+            app:layout_constraintTop_toBottomOf="@+id/et_locale" />
 
         <EditText
-            android:id="@+id/et_position"
+            android:id="@+id/et_ability"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="24dp"
@@ -124,10 +124,10 @@
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_position" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_ability" />
 
         <TextView
-            android:id="@+id/tv_id"
+            android:id="@+id/tv_emailaddress"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -143,7 +143,7 @@
             app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
         <EditText
-            android:id="@+id/et_id"
+            android:id="@+id/et_emailaddress"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="24dp"
@@ -158,7 +158,7 @@
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_id" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_emailaddress" />
 
         <TextView
             android:id="@+id/tv_pw"
@@ -174,7 +174,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_id" />
+            app:layout_constraintTop_toBottomOf="@+id/et_emailaddress" />
 
         <EditText
             android:id="@+id/et_pw"
@@ -208,7 +208,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_position" />
+            app:layout_constraintTop_toBottomOf="@+id/et_ability" />
 
         <EditText
             android:id="@+id/et_tel"

@@ -16,9 +16,9 @@ import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
 
-    private val idPattern = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)\$")
+    private val emailaddressPattern = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)\$")
     private val pwPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#\$%^&+=]).{8,15}\$")
-    private val phonePattern = Pattern.compile("^[가-힣a-zA-Z]*\$")
+    private val localePattern = Pattern.compile("^[가-힣a-zA-Z]*\$")
     private val namePattern = Pattern.compile("^[가-힣a-zA-Z]*\$")
     private val telPattern = Pattern.compile("^[0-9]{10,11}\$")
     private var imgSet: Int = R.drawable.logo1 // 기본 값으로 초기화
@@ -28,10 +28,10 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
 
         val et_name = findViewById<EditText>(R.id.et_name)
-        val et_id = findViewById<EditText>(R.id.et_id)
+        val et_emailaddress = findViewById<EditText>(R.id.et_emailaddress)
         val et_pw = findViewById<EditText>(R.id.et_pw)
-        val et_phone = findViewById<EditText>(R.id.et_phone)
-        val et_position = findViewById<EditText>(R.id.et_position)
+        val et_locale = findViewById<EditText>(R.id.et_locale)
+
         val et_tel = findViewById<EditText>(R.id.et_tel)
         val btn_signUp = findViewById<Button>(R.id.btn_signupOk)
         val btn_signCancel = findViewById<Button>(R.id.btn_signupcancel)
@@ -39,12 +39,12 @@ class SignUpActivity : AppCompatActivity() {
 
 
 
-        et_id.addTextChangedListener(object : TextWatcher {
+        et_emailaddress.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val id = s.toString()
-                val valid = idPattern.matcher(id).matches()
+                val emailaddress = s.toString()
+                val valid = emailaddressPattern.matcher(emailaddress).matches()
                 if (!valid) {
-                    et_id.error = getString(R.string._5_10)
+                    et_emailaddress.error = getString(R.string._5_10)
                 }
             }
 
@@ -65,12 +65,12 @@ class SignUpActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-        et_phone.addTextChangedListener(object : TextWatcher {
+        et_locale.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val phone = s.toString()
-                val valid = phonePattern.matcher(phone).matches()
+                val locale = s.toString()
+                val valid = localePattern.matcher(locale).matches()
                 if (!valid) {
-                    et_phone.error = getString(R.string.kor)
+                    et_locale.error = getString(R.string.kor)
                 }
             }
 
@@ -122,29 +122,31 @@ class SignUpActivity : AppCompatActivity() {
 
         btn_signUp.setOnClickListener {
             val name = et_name.text.toString()
-            val id = et_id.text.toString()
+            val emailaddress = et_emailaddress.text.toString()
             val pw = et_pw.text.toString()
-            val phone = et_phone.text.toString()
-            val position = et_position.text.toString()
+            val locale = et_locale.text.toString()
 
-            if (name.isBlank() || id.isBlank() || pw.isBlank() || phone.isBlank()) {
+            val tel = et_tel.text.toString()
+
+            if (name.isBlank() || emailaddress.isBlank() || pw.isBlank() || locale.isBlank() || tel.isBlank()) {
                 Toast.makeText(this, getString(R.string.info), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
 
             val nameValid = namePattern.matcher(name).matches()
-            val idValid = idPattern.matcher(id).matches()
+            val emailaddressValid = emailaddressPattern.matcher(emailaddress).matches()
             val pwValid = pwPattern.matcher(pw).matches()
-            val phoneValid = phonePattern.matcher(phone).matches()
+            val localeValid = localePattern.matcher(locale).matches()
+            val telValid = telPattern.matcher(tel).matches()
 
             if (!nameValid) {
                 et_name.error = getString(R.string.kor)
                 return@setOnClickListener
             }
 
-            if (!idValid) {
-                et_id.error = getString(R.string._5_10)
+            if (!emailaddressValid) {
+                et_emailaddress.error = getString(R.string._5_10)
                 return@setOnClickListener
             }
 
@@ -153,8 +155,13 @@ class SignUpActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (!phoneValid) {
-                et_phone.error = getString(R.string.kor)
+            if (!localeValid) {
+                et_locale.error = getString(R.string.kor)
+                return@setOnClickListener
+            }
+
+            if (!telValid) {
+                et_tel.error = getString(R.string._10_11)
                 return@setOnClickListener
             }
 
@@ -162,10 +169,11 @@ class SignUpActivity : AppCompatActivity() {
 
             //수정하겠습니다.
             intent.putExtra("userName", name)
-            intent.putExtra("userId", id)
+            intent.putExtra("userEmailAddress", emailaddress)
             intent.putExtra("userPw", pw)
-            intent.putExtra("userTel", phone)
-            intent.putExtra("userPosition",position)
+            intent.putExtra("userTel", tel)
+            intent.putExtra("userLocale", locale)
+
             intent.putExtra("userImage",imgSet)
 
             startActivity(intent)
