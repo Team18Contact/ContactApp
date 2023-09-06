@@ -31,7 +31,7 @@ class SignUpActivity : AppCompatActivity() {
         val et_emailaddress = findViewById<EditText>(R.id.et_emailaddress)
         val et_pw = findViewById<EditText>(R.id.et_pw)
         val et_locale = findViewById<EditText>(R.id.et_locale)
-
+        val et_ability = findViewById<EditText>(R.id.et_ability)
         val et_tel = findViewById<EditText>(R.id.et_tel)
         val btn_signUp = findViewById<Button>(R.id.btn_signupOk)
         val btn_signCancel = findViewById<Button>(R.id.btn_signupcancel)
@@ -120,12 +120,12 @@ class SignUpActivity : AppCompatActivity() {
 //
 //        }
 
-        btn_signUp.setOnClickListener {
+        btn_signUp.setOnClickListener{
             val name = et_name.text.toString()
             val emailaddress = et_emailaddress.text.toString()
             val pw = et_pw.text.toString()
             val locale = et_locale.text.toString()
-
+            val ability = et_ability.text.toString()
             val tel = et_tel.text.toString()
 
             if (name.isBlank() || emailaddress.isBlank() || pw.isBlank() || locale.isBlank() || tel.isBlank()) {
@@ -173,7 +173,7 @@ class SignUpActivity : AppCompatActivity() {
             intent.putExtra("userPw", pw)
             intent.putExtra("userTel", tel)
             intent.putExtra("userLocale", locale)
-
+            intent.putExtra("userAbility", ability)
             intent.putExtra("userImage",imgSet)
 
             startActivity(intent)

@@ -113,7 +113,7 @@ class ContactListFragment : Fragment() {
             var count = 0
             while(cursor.moveToNext() && count < 15) {
                 count++ //임의로 15개까지만 출력
-                contactList.add(ContactModel(R.drawable.ic_empty_user, cursor.getString(1), "", cursor.getString(1), "", ""))
+                contactList.add(ContactModel(R.drawable.ic_empty_user, cursor.getString(1), "", cursor.getString(2), "", ""))
             }
         }
         return contactList

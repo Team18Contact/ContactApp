@@ -31,12 +31,13 @@ class MainActivity : AppCompatActivity() {
     private fun initView() = with(binding) {
         checkPermission()
         val checkName = intent.getStringExtra("userName") ?: "name"
+        val checkEmailAddress = intent.getStringExtra("userEmailAddress") ?: "emailaddress"
         val checkTel = intent.getStringExtra("userTel") ?: "tel"
-        val checkPosition = intent.getStringExtra("userPosition") ?: "position"
-        val checkImage = intent.getIntExtra("userImage", 0)
+        val checkLocale = intent.getStringExtra("userLocale") ?: "locale"
+        val checkAbility = intent.getStringExtra("userAbility") ?: "ability"
 
         val detailFragment = viewPager2Adapter.getFragment(1) as? DetailFragment
-        detailFragment?.setData(ContactModel(R.drawable.ic_empty_user, checkName, checkTel, "01012345678", "asd@naver.com", checkPosition))
+        detailFragment?.setData(ContactModel(R.drawable.ic_empty_user, checkName, checkLocale, checkTel, checkEmailAddress, checkAbility))
 
         viewPager2.adapter = viewPager2Adapter
 
