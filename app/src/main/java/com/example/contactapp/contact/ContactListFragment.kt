@@ -1,5 +1,7 @@
 package com.example.contactapp.contact
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import androidx.fragment.app.Fragment
@@ -7,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.contactapp.R
 import com.example.contactapp.contact.Constants.ITEM_OBJECT
 import com.example.contactapp.contact.ContactModelDB.dataList
@@ -14,7 +18,6 @@ import com.example.contactapp.databinding.FragmentContactListBinding
 import com.example.contactapp.detail.DetailFragment
 
 class ContactListFragment : Fragment() {
-
     private var _binding: FragmentContactListBinding? = null
     private val binding get() = _binding!!
 
@@ -48,6 +51,19 @@ class ContactListFragment : Fragment() {
 
     private fun initView() = with(binding) {
         recyclerViewContact.adapter = recyclerViewAdapter
+//        val contactListItemHolder = ContactListItemHelper(requireContext()).apply {
+//            setAdapter(recyclerViewAdapter)
+//        }
+//        val itemTouchHelper = ItemTouchHelper(contactListItemHolder)
+//        itemTouchHelper.attachToRecyclerView(recyclerViewContact)
+
+        val touchHelperCallback = ContactListItemHelper(0, ItemTouchHelper.RIGHT) { position ->
+            startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:${dataList[position].phoneNum}")))
+//            recyclerViewAdapter.notifyItemChanged(position)
+            recyclerViewAdapter.notifyDataSetChanged()
+        }
+        val itemTouchHelper = ItemTouchHelper(touchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerViewContact)
 
         recyclerViewAdapter.itemClick = object : ContactRecyclerViewAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
@@ -67,6 +83,7 @@ class ContactListFragment : Fragment() {
             }
         }
     }
+
     fun bundleToDetailFragment(contact: ContactModel) {
         val detailFragment = DetailFragment()
         val bundle = bundleOf(ITEM_OBJECT to contact)

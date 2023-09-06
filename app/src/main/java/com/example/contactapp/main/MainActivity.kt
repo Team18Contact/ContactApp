@@ -1,6 +1,7 @@
 package com.example.contactapp.main
 
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -78,9 +79,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkPermission() {
-        val status = ContextCompat.checkSelfPermission(this, "android.permission.READ_CONTACTS")
-        if(status != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf<String>("android.permission.READ_CONTACTS"), 100)
+        if(ContextCompat.checkSelfPermission(this, "android.permission.READ_CONTACTS") != PackageManager.PERMISSION_GRANTED
+            || ContextCompat.checkSelfPermission(this, "android.permission.CALL_PHONE") != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf<String>("android.permission.READ_CONTACTS", "android.permission.CALL_PHONE"), 100)
         }
     }
 
@@ -90,7 +91,8 @@ class MainActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
+            && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(this, "PERMISSION GRANTED", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "PERMISSION DENIED", Toast.LENGTH_SHORT).show()
