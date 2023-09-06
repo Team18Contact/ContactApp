@@ -19,7 +19,6 @@ data class ContactModel(
 object ContactModelDB {
     var dataList = mutableListOf<ContactModel>()
     init {
-
         dataList.apply{
             add(ContactModel(R.drawable.img_kds, "김두식", "문산", "010-1111-1111", "kds@gmail.com", "비행"))
             add(ContactModel(R.drawable.img_jjw, "장주원", "구룡포", "010-2222-2222", "jjw@gmail.com", "무한 재생"))
@@ -30,9 +29,7 @@ object ContactModelDB {
             add(ContactModel(R.drawable.img_jsj, "정상진", "진천", "010-7777-7777", "jsj@gmail.com", "괴력"))
             add(ContactModel(R.drawable.img_jys, "전영석", "봉평", "010-8888-8888", "jys@gmail.com", "전기"))
             add(ContactModel(R.drawable.img_hsh, "홍성화", "나주", "010-9999-9999", "hsh@gmail.com", "투시"))
-
         }
-
     }
 }
 

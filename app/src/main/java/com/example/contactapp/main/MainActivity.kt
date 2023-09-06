@@ -1,8 +1,12 @@
 package com.example.contactapp.main
 
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.contactapp.R
 import com.example.contactapp.contact.ContactListFragment
@@ -25,14 +29,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() = with(binding) {
-
+        checkPermission()
         val checkName = intent.getStringExtra("userName") ?: "name"
         val checkTel = intent.getStringExtra("userTel") ?: "tel"
         val checkPosition = intent.getStringExtra("userPosition") ?: "position"
         val checkImage = intent.getIntExtra("userImage", 0)
 
         val detailFragment = viewPager2Adapter.getFragment(1) as? DetailFragment
-        detailFragment?.setData(ContactModel(R.drawable.img_kds, checkName, checkTel, "01012345678", "asd@naver.com", checkPosition))
+        detailFragment?.setData(ContactModel(R.drawable.ic_empty_user, checkName, checkTel, "01012345678", "asd@naver.com", checkPosition))
 
         viewPager2.adapter = viewPager2Adapter
 
@@ -59,11 +63,36 @@ class MainActivity : AppCompatActivity() {
         }
 
         imgListView.setOnClickListener {
-            contactListFragment?.showRecyclerView()
+            contactListFragment?.showRecyclerView(0)
+        }
+
+        imgListView.setOnLongClickListener {
+            contactListFragment?.showRecyclerView(1)
+            true
         }
 
         btnFab.setOnClickListener { //fab 클릭 리스너
             //add contact dialog
+        }
+    }
+
+    private fun checkPermission() {
+        val status = ContextCompat.checkSelfPermission(this, "android.permission.READ_CONTACTS")
+        if(status != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf<String>("android.permission.READ_CONTACTS"), 100)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "PERMISSION GRANTED", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "PERMISSION DENIED", Toast.LENGTH_SHORT).show()
         }
     }
 }

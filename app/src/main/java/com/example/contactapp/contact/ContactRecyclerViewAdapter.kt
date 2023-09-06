@@ -40,7 +40,9 @@ class ContactRecyclerViewAdapter (private val contactList: MutableList<ContactMo
             }
 
             imgProfile.setImageResource(contact.profile)
-            txtInfo.text = "${contact.name} (${contact.locale}) - ${contact.ability}"
+            val localeTxt = if(contact.locale.isNotEmpty()) " (${contact.locale}) " else contact.locale
+            val abilityTxt = if(contact.ability.isNotEmpty()) "- ${contact.ability}" else contact.ability
+            txtInfo.text = "${contact.name}$localeTxt$abilityTxt"
         }
     }
 }
