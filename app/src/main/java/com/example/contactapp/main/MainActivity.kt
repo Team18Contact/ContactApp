@@ -48,10 +48,10 @@ class MainActivity : AppCompatActivity() {
 
         viewPager2.adapter = viewPager2Adapter
 
-        viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                if(viewPager2Adapter.getFragment(position) is ContactListFragment) {
+                if (viewPager2Adapter.getFragment(position) is ContactListFragment) {
                     imgGridView.visibility = View.VISIBLE
                     imgListView.visibility = View.VISIBLE
                 } else {
@@ -85,16 +85,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun showCustomDialog() {
         val dialogBinding = DialogAddContactBinding.inflate(layoutInflater)
-        val customDialog = Dialog(this@MainActivity)
-        customDialog.setContentView(dialogBinding.root)
-        customDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val buildDialog = AlertDialog.Builder(this)
+            .setView(dialogBinding.root)
+            .create()
+
+        buildDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        buildDialog.show()
+
+//        val customDialog = Dialog(this@MainActivity)
+//        customDialog.setContentView(dialogBinding.root)
+//        customDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         dialogBinding.imgAddProfile.setOnClickListener {
             //갤러리 접근
         }
 
         dialogBinding.btnCancel.setOnClickListener {
-            customDialog.dismiss()
+            buildDialog.dismiss()
         }
 
         dialogBinding.btnAdd.setOnClickListener {
@@ -103,20 +110,45 @@ class MainActivity : AppCompatActivity() {
             val emailEdt = dialogBinding.edtEmail.text.toString()
             val localeEdt = dialogBinding.edtLocale.text.toString()
             val abilityEdt = dialogBinding.edtAbility.text.toString()
-            if(nameEdt.isBlank() || phoneEdt.isBlank() || emailEdt.isBlank() || localeEdt.isBlank()) {
-                Toast.makeText(this, getString(R.string.dialog_no_info_toast), Toast.LENGTH_SHORT).show()
+            if (nameEdt.isBlank() || phoneEdt.isBlank() || emailEdt.isBlank() || localeEdt.isBlank()) {
+                Toast.makeText(this, getString(R.string.dialog_no_info_toast), Toast.LENGTH_SHORT)
+                    .show()
             } else {
-                contactListFragment?.addContactList(ContactModel(R.drawable.ic_empty_user, nameEdt, localeEdt, phoneEdt, emailEdt, abilityEdt))
-                customDialog.dismiss()
+                contactListFragment?.addContactList(
+                    ContactModel(
+                        R.drawable.ic_empty_user,
+                        nameEdt,
+                        localeEdt,
+                        phoneEdt,
+                        emailEdt,
+                        abilityEdt
+                    )
+                )
+                buildDialog.dismiss()
             }
         }
-        customDialog.show()
+
+
     }
 
     private fun checkPermission() {
-        if(ContextCompat.checkSelfPermission(this, "android.permission.READ_CONTACTS") != PackageManager.PERMISSION_GRANTED
-            || ContextCompat.checkSelfPermission(this, "android.permission.CALL_PHONE") != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf<String>("android.permission.READ_CONTACTS", "android.permission.CALL_PHONE"), 100)
+        if (ContextCompat.checkSelfPermission(
+                this,
+                "android.permission.READ_CONTACTS"
+            ) != PackageManager.PERMISSION_GRANTED
+            || ContextCompat.checkSelfPermission(
+                this,
+                "android.permission.CALL_PHONE"
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf<String>(
+                    "android.permission.READ_CONTACTS",
+                    "android.permission.CALL_PHONE"
+                ),
+                100
+            )
         } else {
             initView()
         }
@@ -129,7 +161,8 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
-            && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+            && grantResults[1] == PackageManager.PERMISSION_GRANTED
+        ) {
             Toast.makeText(this, "PERMISSION GRANTED", Toast.LENGTH_SHORT).show()
             initView()
         } else {
