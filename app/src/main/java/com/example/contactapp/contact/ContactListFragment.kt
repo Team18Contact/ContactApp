@@ -1,7 +1,5 @@
 package com.example.contactapp.contact
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import androidx.fragment.app.Fragment
@@ -51,18 +49,8 @@ class ContactListFragment : Fragment() {
 
     private fun initView() = with(binding) {
         recyclerViewContact.adapter = recyclerViewAdapter
-//        val contactListItemHolder = ContactListItemHelper(requireContext()).apply {
-//            setAdapter(recyclerViewAdapter)
-//        }
-//        val itemTouchHelper = ItemTouchHelper(contactListItemHolder)
-//        itemTouchHelper.attachToRecyclerView(recyclerViewContact)
-
-        val touchHelperCallback = ContactListItemHelper(0, ItemTouchHelper.RIGHT) { position ->
-            startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:${dataList[position].phoneNum}")))
-//            recyclerViewAdapter.notifyItemChanged(position)
-            recyclerViewAdapter.notifyDataSetChanged()
-        }
-        val itemTouchHelper = ItemTouchHelper(touchHelperCallback)
+        val itemHelperCallback = ContactListItemHelper(requireContext(), this@ContactListFragment)
+        val itemTouchHelper = ItemTouchHelper(itemHelperCallback)
         itemTouchHelper.attachToRecyclerView(recyclerViewContact)
 
         recyclerViewAdapter.itemClick = object : ContactRecyclerViewAdapter.ItemClick {
@@ -82,6 +70,11 @@ class ContactListFragment : Fragment() {
                 bundleToDetailFragment(contact)
             }
         }
+    }
+
+    fun updateSwipeItem(viewHolder: RecyclerView.ViewHolder) {
+//        recyclerViewAdapter.notifyItemChanged(viewHolder.adapterPosition)
+        recyclerViewAdapter.notifyDataSetChanged()
     }
 
     fun bundleToDetailFragment(contact: ContactModel) {
@@ -127,9 +120,10 @@ class ContactListFragment : Fragment() {
             null
         )
         if(cursor != null) {
-            var count = 0
-            while(cursor.moveToNext() && count < 15) {
-                count++ //임의로 15개까지만 출력
+//            var count = 0
+//            while(cursor.moveToNext() && count < 15) {
+//                count++ //임의로 15개까지만 출력
+            while(cursor.moveToNext()) {
                 contactList.add(ContactModel(R.drawable.ic_empty_user, cursor.getString(1), "", cursor.getString(2), "", ""))
             }
         }

@@ -1,15 +1,13 @@
 package com.example.contactapp.contact
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Canvas
+import android.net.Uri
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-//class ContactListItemHelper(private val context: Context): ItemTouchHelper.Callback() {
-class ContactListItemHelper(
-    dragDirs: Int,
-    swipeDirs: Int,
-    private val onSwiped: (Int) -> Unit
-) : ItemTouchHelper.SimpleCallback(dragDirs, swipeDirs) {
+class ContactListItemHelper(private val context: Context, private val fragment: ContactListFragment): ItemTouchHelper.Callback() {
     override fun isItemViewSwipeEnabled(): Boolean {
         return true
     }
@@ -51,16 +49,13 @@ class ContactListItemHelper(
     ): Boolean = false
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        onSwiped(viewHolder.adapterPosition)
-    }
+        val contactViewHolder = viewHolder as ContactRecyclerViewAdapter.Holder
+        val phoneNumber = contactViewHolder.contactNumber
 
-//    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-//        val contactViewHolder = viewHolder as ContactRecyclerViewAdapter.Holder
-//        val phoneNumber = contactViewHolder.contactNumber
-//
-//        if(direction == ItemTouchHelper.RIGHT) {
-//            val callUriSwipedPerson = Uri.parse("tel:${phoneNumber}")
-//            context.startActivity(Intent(Intent.ACTION_CALL, callUriSwipedPerson))
-//        }
-//    }
+        if(direction == ItemTouchHelper.RIGHT) {
+            val callUriSwipedPerson = Uri.parse("tel:${phoneNumber}")
+            context.startActivity(Intent(Intent.ACTION_CALL, callUriSwipedPerson))
+            fragment.updateSwipeItem(contactViewHolder)
+        }
+    }
 }
