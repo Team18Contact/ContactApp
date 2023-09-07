@@ -48,4 +48,9 @@ class ContactRecyclerViewAdapter (private val contactList: MutableList<ContactMo
             txtInfo.text = "${contact.name}$localeTxt$abilityTxt"
         }
     }
+
+    fun addItem(contact: ContactModel) {
+        contactList.add(contact)
+        notifyItemChanged(contactList.size - 1)
+    }
 }

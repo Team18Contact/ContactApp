@@ -65,4 +65,14 @@
     <string name="inputTel">전화번호를 입력하세요.</string>
     <string name="locale">Locale</string>
     <string name="inputLocale">지역명</string>
+
+    //dialog
+    <string name="dialog_name_edt">이름*</string>
+    <string name="dialog_phone_edt">전화번호*</string>
+    <string name="dialog_email_edt">이메일*</string>
+    <string name="dialog_locale_edt">지역*</string>
+    <string name="dialog_ability_edt">능력</string>
+    <string name="dialog_cancel_btn">취소</string>
+    <string name="dialog_add_btn">등록</string>
+    <string name="dialog_no_info_toast">* 표시가 있는 항목은 전부 입력해주세요.</string>
 </resources>

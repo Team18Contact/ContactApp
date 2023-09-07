@@ -72,6 +72,10 @@ class ContactListFragment : Fragment() {
         }
     }
 
+    fun addContactList(contact: ContactModel) {
+        recyclerViewAdapter.addItem(contact)
+    }
+
     fun updateSwipeItem(viewHolder: RecyclerView.ViewHolder) {
 //        recyclerViewAdapter.notifyItemChanged(viewHolder.adapterPosition)
         recyclerViewAdapter.notifyDataSetChanged()

@@ -1,10 +1,14 @@
 package com.example.contactapp.main
 
+import android.app.Dialog
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
@@ -12,6 +16,7 @@ import com.example.contactapp.R
 import com.example.contactapp.contact.ContactListFragment
 import com.example.contactapp.contact.ContactModel
 import com.example.contactapp.databinding.ActivityMainBinding
+import com.example.contactapp.databinding.DialogAddContactBinding
 import com.example.contactapp.detail.DetailFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -19,6 +24,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewPager2Adapter by lazy {
         MainViewPagerAdapter(this@MainActivity)
+    }
+    private val contactListFragment by lazy {
+        viewPager2Adapter.getFragment(0) as? ContactListFragment
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +65,6 @@ class MainActivity : AppCompatActivity() {
             tab.setText(viewPager2Adapter.getTitle(pos))
         }.attach()
 
-        val contactListFragment = viewPager2Adapter.getFragment(0) as? ContactListFragment
         imgGridView.setOnClickListener {
             contactListFragment?.showGridView()
         }
@@ -72,8 +79,38 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnFab.setOnClickListener { //fab 클릭 리스너
-            //add contact dialog
+            showCustomDialog()
         }
+    }
+
+    private fun showCustomDialog() {
+        val dialogBinding = DialogAddContactBinding.inflate(layoutInflater)
+        val customDialog = Dialog(this@MainActivity)
+        customDialog.setContentView(dialogBinding.root)
+        customDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogBinding.imgAddProfile.setOnClickListener {
+            //갤러리 접근
+        }
+
+        dialogBinding.btnCancel.setOnClickListener {
+            customDialog.dismiss()
+        }
+
+        dialogBinding.btnAdd.setOnClickListener {
+            val nameEdt = dialogBinding.edtName.text.toString()
+            val phoneEdt = dialogBinding.edtPhone.text.toString()
+            val emailEdt = dialogBinding.edtEmail.text.toString()
+            val localeEdt = dialogBinding.edtLocale.text.toString()
+            val abilityEdt = dialogBinding.edtAbility.text.toString()
+            if(nameEdt.isBlank() || phoneEdt.isBlank() || emailEdt.isBlank() || localeEdt.isBlank()) {
+                Toast.makeText(this, getString(R.string.dialog_no_info_toast), Toast.LENGTH_SHORT).show()
+            } else {
+                contactListFragment?.addContactList(ContactModel(R.drawable.ic_empty_user, nameEdt, localeEdt, phoneEdt, emailEdt, abilityEdt))
+                customDialog.dismiss()
+            }
+        }
+        customDialog.show()
     }
 
     private fun checkPermission() {
