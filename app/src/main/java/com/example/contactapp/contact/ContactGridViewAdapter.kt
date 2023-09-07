@@ -1,14 +1,14 @@
 package com.example.contactapp.contact
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemClickListener
 import android.widget.BaseAdapter
+import com.example.contactapp.contact.Constants.convertToBitmap
 import com.example.contactapp.databinding.ContactGridviewItemBinding
 
-class ContactGridViewAdapter(private val contactList: MutableList<ContactModel>): BaseAdapter() {
+class ContactGridViewAdapter(private val context: Context, private val contactList: MutableList<ContactModel>): BaseAdapter() {
     private lateinit var binding: ContactGridviewItemBinding
 
     interface OnItemClickListener {
@@ -37,13 +37,13 @@ class ContactGridViewAdapter(private val contactList: MutableList<ContactModel>)
             holder = convertView.tag as ViewHolder
         }
 
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), context)
         return binding.root
     }
 
     private class ViewHolder(private val binding: ContactGridviewItemBinding) {
-        fun bind(contact: ContactModel) = with(binding) {
-            imgProfile.setImageResource(contact.profile)
+        fun bind(contact: ContactModel, context: Context) = with(binding) {
+            imgProfile.setImageBitmap(convertToBitmap(context, contact.profile))
             txtName.text = contact.name
             txtAbility.text = contact.ability
         }

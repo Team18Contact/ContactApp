@@ -1,7 +1,6 @@
 package com.example.contactapp.detail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import com.example.contactapp.contact.Constants
 import com.example.contactapp.contact.Constants.ITEM_OBJECT
+import com.example.contactapp.contact.Constants.convertToBitmap
 import com.example.contactapp.contact.ContactModel
 import com.example.contactapp.contact.ContactModelDB
 import com.example.contactapp.databinding.FragmentDetailBinding
@@ -36,18 +36,12 @@ class DetailFragment : Fragment() {
 
     private fun initView() = with(binding) {
         val receiveData = data ?: receiveData
-        imgPhoto.setImageDrawable(receiveData?.let {
-            ResourcesCompat.getDrawable(
-                resources,
-                it.profile,
-                null
-            )
-        })
-        tvName.text = receiveData?.name
-        tvPhoneNumber.text = receiveData?.phoneNum
-        tvEmail.text = receiveData?.email
-        tvLocale.text = receiveData?.locale
-        tvAbility.text = receiveData?.ability
+        imgPhoto.setImageBitmap(receiveData.let {convertToBitmap(requireContext(), it.profile) })
+        tvName.text = receiveData.name
+        tvPhoneNumber.text = receiveData.phoneNum
+        tvEmail.text = receiveData.email
+        tvLocale.text = receiveData.locale
+        tvAbility.text = receiveData.ability
     }
 
     fun setData(contact: ContactModel) {

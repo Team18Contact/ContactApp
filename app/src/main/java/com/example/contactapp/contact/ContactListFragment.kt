@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contactapp.R
 import com.example.contactapp.contact.Constants.ITEM_OBJECT
+import com.example.contactapp.contact.Constants.convertToUri
 import com.example.contactapp.contact.ContactModelDB.dataList
 import com.example.contactapp.databinding.FragmentContactListBinding
 import com.example.contactapp.detail.DetailFragment
@@ -20,11 +21,11 @@ class ContactListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val recyclerViewAdapter by lazy {
-        ContactRecyclerViewAdapter(dataList)
+        ContactRecyclerViewAdapter(requireContext(), dataList)
     }
 
     private val gridViewAdapter by lazy {
-        ContactGridViewAdapter(dataList)
+        ContactGridViewAdapter(requireContext(), dataList)
     }
 
     private val contactRealList by lazy {
@@ -32,7 +33,7 @@ class ContactListFragment : Fragment() {
     }
 
     private val recyclerViewRealAdapter by lazy {
-        ContactRecyclerViewAdapter(contactRealList)
+        ContactRecyclerViewAdapter(requireContext(), contactRealList)
     }
 
     override fun onCreateView(
@@ -128,7 +129,7 @@ class ContactListFragment : Fragment() {
 //            while(cursor.moveToNext() && count < 15) {
 //                count++ //임의로 15개까지만 출력
             while(cursor.moveToNext()) {
-                contactList.add(ContactModel(R.drawable.ic_empty_user, cursor.getString(1), "", cursor.getString(2), "", ""))
+                contactList.add(ContactModel(convertToUri(R.drawable.ic_empty_user), cursor.getString(1), "", cursor.getString(2), "", ""))
             }
         }
         return contactList

@@ -1,18 +1,24 @@
 package com.example.contactapp.main
 
-import android.app.Dialog
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.contactapp.R
+import com.example.contactapp.contact.Constants.convertToBitmap
+import com.example.contactapp.contact.Constants.convertToUri
 import com.example.contactapp.contact.ContactListFragment
 import com.example.contactapp.contact.ContactModel
 import com.example.contactapp.databinding.ActivityMainBinding
@@ -22,11 +28,20 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var dialogBinding: DialogAddContactBinding
     private val viewPager2Adapter by lazy {
         MainViewPagerAdapter(this@MainActivity)
     }
     private val contactListFragment by lazy {
         viewPager2Adapter.getFragment(0) as? ContactListFragment
+    }
+
+    private lateinit var galleryUri: Uri
+    private val galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if(result.resultCode == Activity.RESULT_OK) {
+            galleryUri = result.data?.data ?: convertToUri(R.drawable.ic_empty_user)
+            dialogBinding.imgProfile.setImageBitmap(convertToBitmap(this, galleryUri))
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         val checkAbility = intent.getStringExtra("userAbility") ?: "ability"
 
         val detailFragment = viewPager2Adapter.getFragment(1) as? DetailFragment
-        detailFragment?.setData(ContactModel(R.drawable.ic_empty_user, checkName, checkLocale, checkTel, checkEmailAddress, checkAbility))
+        detailFragment?.setData(ContactModel(convertToUri(R.drawable.ic_empty_user), checkName, checkLocale, checkTel, checkEmailAddress, checkAbility))
 
         viewPager2.adapter = viewPager2Adapter
 
@@ -84,7 +99,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showCustomDialog() {
-        val dialogBinding = DialogAddContactBinding.inflate(layoutInflater)
+        dialogBinding = DialogAddContactBinding.inflate(layoutInflater)
         val buildDialog = AlertDialog.Builder(this)
             .setView(dialogBinding.root)
             .create()
@@ -92,12 +107,10 @@ class MainActivity : AppCompatActivity() {
         buildDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         buildDialog.show()
 
-//        val customDialog = Dialog(this@MainActivity)
-//        customDialog.setContentView(dialogBinding.root)
-//        customDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
         dialogBinding.imgAddProfile.setOnClickListener {
-            //갤러리 접근
+            val intent = Intent(Intent.ACTION_PICK).setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
+            galleryLauncher.launch(intent)
+
         }
 
         dialogBinding.btnCancel.setOnClickListener {
@@ -114,36 +127,23 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.dialog_no_info_toast), Toast.LENGTH_SHORT)
                     .show()
             } else {
-                contactListFragment?.addContactList(
-                    ContactModel(
-                        R.drawable.ic_empty_user,
-                        nameEdt,
-                        localeEdt,
-                        phoneEdt,
-                        emailEdt,
-                        abilityEdt
-                    )
-                )
+                contactListFragment?.addContactList(ContactModel(galleryUri, nameEdt, localeEdt, phoneEdt, emailEdt, abilityEdt))
                 buildDialog.dismiss()
             }
         }
-
-
     }
 
     private fun checkPermission() {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                "android.permission.READ_CONTACTS"
-            ) != PackageManager.PERMISSION_GRANTED
-            || ContextCompat.checkSelfPermission(
-                this,
-                "android.permission.CALL_PHONE"
-            ) != PackageManager.PERMISSION_GRANTED
+        if (ContextCompat.checkSelfPermission(this, "android.permission.READ_EXTERNAL_STORAGE") != PackageManager.PERMISSION_GRANTED
+            || ContextCompat.checkSelfPermission(this, "android.permission.WRITE_EXTERNAL_STORAGE") != PackageManager.PERMISSION_GRANTED
+            || ContextCompat.checkSelfPermission(this, "android.permission.READ_CONTACTS") != PackageManager.PERMISSION_GRANTED
+            || ContextCompat.checkSelfPermission(this, "android.permission.CALL_PHONE") != PackageManager.PERMISSION_GRANTED
         ) {
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf<String>(
+                    "android.permission.READ_EXTERNAL_STORAGE",
+                    "android.permission.WRITE_EXTERNAL_STORAGE",
                     "android.permission.READ_CONTACTS",
                     "android.permission.CALL_PHONE"
                 ),
