@@ -23,7 +23,7 @@
                 android:id="@+id/img_photo"
                 android:layout_width="266dp"
                 android:layout_height="266dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="50dp"
                 android:src="@drawable/ic_launcher_background"
 
                 app:civ_border_color="@color/white"
@@ -36,12 +36,12 @@
                 android:id="@+id/btn_messageButton"
                 android:layout_width="0dp"
                 android:layout_height="45dp"
-
                 android:layout_marginTop="50dp"
                 android:background="#FED36A"
                 android:gravity="center"
                 android:text="MESSAGE"
                 android:textStyle="bold"
+                android:visibility="visible"
                 app:layout_constraintEnd_toStartOf="@id/btn_callButton"
                 app:layout_constraintStart_toStartOf="@id/iv_name"
                 app:layout_constraintTop_toBottomOf="@id/img_photo" />
@@ -51,11 +51,11 @@
                 android:layout_width="0dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="50dp"
-
                 android:background="#263238"
                 android:gravity="center"
                 android:text="CALL"
                 android:textStyle="bold"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="@id/iv_name"
                 app:layout_constraintStart_toEndOf="@id/btn_messageButton"
                 app:layout_constraintTop_toBottomOf="@id/img_photo" />
@@ -71,8 +71,8 @@
                 android:background="#455A64"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_messageButton"
-                />
+                app:layout_constraintTop_toBottomOf="@id/btn_messageButton" />
+
             <ImageView
                 android:id="@+id/icon_name"
                 android:layout_width="24dp"
@@ -83,6 +83,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/iv_name"
                 app:layout_constraintStart_toStartOf="@id/iv_name"
                 app:layout_constraintTop_toTopOf="@id/iv_name" />
+
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
@@ -108,6 +109,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_name" />
+
             <ImageView
                 android:id="@+id/icon_phoneNumber"
                 android:layout_width="24dp"
@@ -118,6 +120,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/iv_phoneNumber"
                 app:layout_constraintStart_toStartOf="@id/iv_phoneNumber"
                 app:layout_constraintTop_toTopOf="@id/iv_phoneNumber" />
+
             <TextView
                 android:id="@+id/tv_phoneNumber"
                 android:layout_width="wrap_content"
@@ -142,6 +145,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_phoneNumber" />
+
             <ImageView
                 android:id="@+id/icon_email"
                 android:layout_width="24dp"
@@ -152,6 +156,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/iv_email"
                 app:layout_constraintStart_toStartOf="@id/iv_email"
                 app:layout_constraintTop_toTopOf="@id/iv_email" />
+
             <TextView
                 android:id="@+id/tv_email"
                 android:layout_width="wrap_content"
@@ -176,6 +181,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_email" />
+
             <ImageView
                 android:id="@+id/icon_locale"
                 android:layout_width="24dp"
@@ -186,6 +192,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/iv_locale"
                 app:layout_constraintStart_toStartOf="@id/iv_locale"
                 app:layout_constraintTop_toTopOf="@id/iv_locale" />
+
             <TextView
                 android:id="@+id/tv_locale"
                 android:layout_width="wrap_content"
@@ -213,6 +220,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_locale" />
+
             <ImageView
                 android:id="@+id/icon_ability"
                 android:layout_width="24dp"
@@ -223,6 +231,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/iv_ability"
                 app:layout_constraintStart_toStartOf="@id/iv_ability"
                 app:layout_constraintTop_toTopOf="@id/iv_ability" />
+
             <TextView
                 android:id="@+id/tv_ability"
                 android:layout_width="wrap_content"
@@ -235,8 +244,6 @@
                 app:layout_constraintBottom_toBottomOf="@id/iv_ability"
                 app:layout_constraintStart_toEndOf="@id/icon_ability"
                 app:layout_constraintTop_toTopOf="@id/iv_ability" />
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

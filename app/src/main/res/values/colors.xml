@@ -9,4 +9,5 @@
     <color name="contact_lightYellow">#FAEAC4</color>
     <color name="contact_darkGray">#FF455A64</color>
     <color name="contact_black">#FF20222C</color>
+    <color name="login_blue">#1F63AA</color>
 </resources>
