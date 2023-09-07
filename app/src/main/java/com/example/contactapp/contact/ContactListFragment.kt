@@ -1,11 +1,14 @@
 package com.example.contactapp.contact
 
 import android.os.Bundle
+import android.provider.ContactsContract
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.contactapp.R
 import com.example.contactapp.contact.Constants.ITEM_OBJECT
 import com.example.contactapp.contact.ContactModelDB.dataList
@@ -13,7 +16,6 @@ import com.example.contactapp.databinding.FragmentContactListBinding
 import com.example.contactapp.detail.DetailFragment
 
 class ContactListFragment : Fragment() {
-
     private var _binding: FragmentContactListBinding? = null
     private val binding get() = _binding!!
 
@@ -25,13 +27,20 @@ class ContactListFragment : Fragment() {
         ContactGridViewAdapter(dataList)
     }
 
+    private val contactRealList by lazy {
+        getContacts()
+    }
+
+    private val recyclerViewRealAdapter by lazy {
+        ContactRecyclerViewAdapter(contactRealList)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentContactListBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,11 +49,19 @@ class ContactListFragment : Fragment() {
 
     private fun initView() = with(binding) {
         recyclerViewContact.adapter = recyclerViewAdapter
-        gridViewContact.adapter = gridViewAdapter
+        val itemHelperCallback = ContactListItemHelper(requireContext(), this@ContactListFragment)
+        val itemTouchHelper = ItemTouchHelper(itemHelperCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerViewContact)
 
         recyclerViewAdapter.itemClick = object : ContactRecyclerViewAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 bundleToDetailFragment(dataList[position])
+            }
+        }
+
+        recyclerViewRealAdapter.itemClick = object : ContactRecyclerViewAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                bundleToDetailFragment(contactRealList[position])
             }
         }
 
@@ -54,6 +71,12 @@ class ContactListFragment : Fragment() {
             }
         }
     }
+
+    fun updateSwipeItem(viewHolder: RecyclerView.ViewHolder) {
+//        recyclerViewAdapter.notifyItemChanged(viewHolder.adapterPosition)
+        recyclerViewAdapter.notifyDataSetChanged()
+    }
+
     fun bundleToDetailFragment(contact: ContactModel) {
         val detailFragment = DetailFragment()
         val bundle = bundleOf(ITEM_OBJECT to contact)
@@ -74,11 +97,38 @@ class ContactListFragment : Fragment() {
         gridViewContact.visibility = View.VISIBLE
     }
 
-    fun showRecyclerView() = with(binding) {
+    fun showRecyclerView(num: Int) = with(binding) {
+        when(num) {
+            0 -> recyclerViewContact.adapter = recyclerViewAdapter
+            1 -> recyclerViewContact.adapter = recyclerViewRealAdapter
+        }
         recyclerViewContact.visibility = View.VISIBLE
         gridViewContact.visibility = View.GONE
     }
 
+    private fun getContacts(): MutableList<ContactModel> {
+        val contactList = mutableListOf<ContactModel>()
+        val cursor = requireContext().contentResolver.query(
+            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+            arrayOf<String>(
+                ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
+                ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+                ContactsContract.CommonDataKinds.Phone.NUMBER
+            ),
+            null,
+            null,
+            null
+        )
+        if(cursor != null) {
+//            var count = 0
+//            while(cursor.moveToNext() && count < 15) {
+//                count++ //임의로 15개까지만 출력
+            while(cursor.moveToNext()) {
+                contactList.add(ContactModel(R.drawable.ic_empty_user, cursor.getString(1), "", cursor.getString(2), "", ""))
+            }
+        }
+        return contactList
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null //구글 권장 메모리 누수 방지

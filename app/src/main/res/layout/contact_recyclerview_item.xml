@@ -7,10 +7,33 @@
     android:paddingVertical="8dp">
 
     <LinearLayout
-        android:background="@drawable/border_item"
-        android:id="@+id/linearLayout"
+        android:id="@+id/back_linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/border_item_background_yellow"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        apps:layout_constraintBottom_toBottomOf="@id/contact_linearLayout"
+        apps:layout_constraintEnd_toEndOf="@id/contact_linearLayout"
+        apps:layout_constraintStart_toStartOf="@id/contact_linearLayout"
+        apps:layout_constraintTop_toTopOf="@id/contact_linearLayout">
+
+        <ImageView
+            android:id="@+id/img_call"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_call" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/contact_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/border_item_background_black"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp"

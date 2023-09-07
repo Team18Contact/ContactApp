@@ -35,8 +35,8 @@ class SignInActivity : AppCompatActivity() {
             val checkEmailAddress = intent.getStringExtra("userEmailAddress") ?: "emailaddress"
             val checkPw = intent.getStringExtra("userPw") ?: "pw"
             val checkTel = intent.getStringExtra("userTel") ?: "tel"
-            val checkAbility = intent.getStringExtra("userAbility") ?: "ability"
             val checkLocale = intent.getStringExtra("userLocale") ?: "locale"
+            val checkAbility = intent.getStringExtra("userAbility") ?: "ability"
             val checkImage = intent.getIntExtra("userImage", 0)
 
 
