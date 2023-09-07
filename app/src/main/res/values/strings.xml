@@ -9,7 +9,7 @@
     <string name="mypage_todo_edittext_hint">할일 추가하기</string>
     <string name="mypage_todo_textview_title">할일 목록</string>
     <string name="button_done">Log In</string>
-    <string name="button_done2">Sign Up</string>
+    <string name="button_done2">SIGN UP</string>
     <string name="butotn_input">입력</string>
     <string name="mypage_overlap_todo">이미 등록된 할일이 목록에 존재합니다.</string>
     <string name="mypage_edittext_null">할일을 추가하시려면 텍스트를 입력해주세요!</string>
@@ -39,8 +39,8 @@
     <string name="emailaddress">Email Address</string>
     <string name="password">Password</string>
     <string name="tel">TelPhone</string>
-    <string name="logIn">Log In</string>
-    <string name="signUp">Don\'t you have an account? Sign UP</string>
+    <string name="logIn">LOGIN</string>
+    <string name="signUp">SIGN UP</string>
     <string name="checkIDPassword">아이디/비밀번호를 확인해주세요</string>
     <string name="successLogin">로그인 성공</string>
 
@@ -58,7 +58,7 @@
     <string name="teamNoticeBoard">팀 게시판</string>
 
     //signUp
-    <string name="notice2Team">SIGNUP</string>
+    <string name="notice2Team">SIGN UP</string>
     <string name="inputID">이메일을 입력하세요.</string>
     <string name="inputPassword">비밀번호를 입력하세요.</string>
     <string name="inputPosition">(입력 안해도 됨)</string>

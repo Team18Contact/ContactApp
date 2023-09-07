@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import com.example.contactapp.R
@@ -33,8 +34,8 @@ class SignUpActivity : AppCompatActivity() {
         val et_locale = findViewById<EditText>(R.id.et_locale)
         val et_ability = findViewById<EditText>(R.id.et_ability)
         val et_tel = findViewById<EditText>(R.id.et_tel)
-        val btn_signUp = findViewById<Button>(R.id.btn_signupOk)
-        val btn_signCancel = findViewById<Button>(R.id.btn_signupcancel)
+        val btn_signUp = findViewById<TextView>(R.id.btn_signupOk)
+        val btn_signCancel = findViewById<TextView>(R.id.btn_signupcancel)
 
 
 
