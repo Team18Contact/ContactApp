@@ -7,20 +7,14 @@
     android:background="@drawable/border_item_background_black"
     android:padding="16dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/CardView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        apps:cardCornerRadius="100dp"
-        apps:cardElevation="0dp">
-
-        <ImageView
-            android:id="@+id/img_profile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop" />
-    </androidx.cardview.widget.CardView>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_empty_user"
+        apps:civ_border_color="@color/white"
+        apps:civ_border_width="1dp" />
 
     <TextView
         android:id="@+id/txt_name"
