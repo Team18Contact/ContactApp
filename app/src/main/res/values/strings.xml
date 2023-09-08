@@ -72,6 +72,10 @@
     <string name="dialog_email_edt">이메일*</string>
     <string name="dialog_locale_edt">지역*</string>
     <string name="dialog_ability_edt">능력</string>
+    <string name="dialog_chip_off">OFF</string>
+    <string name="dialog_chip_5_minutes">5분 뒤 알림</string>
+    <string name="dialog_chip_10_minutes">10분 뒤 알림</string>
+    <string name="dialog_chip_30_minutes">30분 뒤 알림</string>
     <string name="dialog_cancel_btn">취소</string>
     <string name="dialog_add_btn">등록</string>
     <string name="dialog_no_info_toast">* 표시가 있는 항목은 전부 입력해주세요.</string>

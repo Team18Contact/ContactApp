@@ -99,16 +99,66 @@
         android:padding="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/lightGray"
-        app:layout_constraintBottom_toTopOf="@id/btn_cancel"
+        app:layout_constraintBottom_toTopOf="@id/chip_group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edt_locale" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_ability"
+        app:singleLine="false"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_off"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:chipBackgroundColor="@color/pressed_chip"
+            android:text="@string/dialog_chip_off" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_5min"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:chipBackgroundColor="@color/pressed_chip"
+            android:text="@string/dialog_chip_5_minutes" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_10min"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:chipBackgroundColor="@color/pressed_chip"
+            android:text="@string/dialog_chip_10_minutes" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_30min"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:chipBackgroundColor="@color/pressed_chip"
+            android:text="@string/dialog_chip_30_minutes" />
+
+    </com.google.android.material.chip.ChipGroup>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_cancel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:background="@color/contact_yellow"
         android:padding="10dp"
@@ -117,7 +167,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_add"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edt_ability" />
+        app:layout_constraintTop_toBottomOf="@id/chip_group" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_add"

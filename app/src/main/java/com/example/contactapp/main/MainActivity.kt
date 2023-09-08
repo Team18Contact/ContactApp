@@ -107,6 +107,27 @@ class MainActivity : AppCompatActivity() {
         buildDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         buildDialog.show()
 
+        dialogBinding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.chip_off -> {
+                    dialogBinding.chipOff.setBackgroundColor(ContextCompat.getColor(this, R.color.contact_yellow))
+                    dialogBinding.chipOff.setTextColor(Color.BLACK)
+                }
+                R.id.chip_5min -> {
+                    dialogBinding.chip5min.setBackgroundColor(ContextCompat.getColor(this, R.color.contact_yellow))
+                    dialogBinding.chip5min.setTextColor(Color.BLACK)
+                }
+                R.id.chip_10min -> {
+                    dialogBinding.chip10min.setBackgroundColor(ContextCompat.getColor(this, R.color.contact_yellow))
+                    dialogBinding.chip10min.setTextColor(Color.BLACK)
+                }
+                R.id.chip_30min -> {
+                    dialogBinding.chip30min.setBackgroundColor(ContextCompat.getColor(this, R.color.contact_yellow))
+                    dialogBinding.chip30min.setTextColor(Color.BLACK)
+                }
+            }
+        }
+
         dialogBinding.imgAddProfile.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK).setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
             galleryLauncher.launch(intent)
