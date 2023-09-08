@@ -220,10 +220,8 @@ class MainActivity : AppCompatActivity() {
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
             && grantResults[1] == PackageManager.PERMISSION_GRANTED
         ) {
-            Toast.makeText(this, "PERMISSION GRANTED", Toast.LENGTH_SHORT).show()
             initView()
         } else {
-            Toast.makeText(this, "PERMISSION DENIED", Toast.LENGTH_SHORT).show()
             finish()
         }
     }

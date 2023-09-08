@@ -107,7 +107,9 @@ class ContactRecyclerViewAdapter (private val context: Context, private val cont
 
     fun addItem(contact: ContactModel) {
         contactList.add(contact)
-        notifyItemChanged(contactList.size - 1)
+        contactList.sortWith(compareBy ({-it.isHeart}, {it.name}))
+//        notifyItemChanged(contactList.size - 1)
+        notifyDataSetChanged()
     }
 
     fun updateItem(contact: ContactModel, position: Int) {

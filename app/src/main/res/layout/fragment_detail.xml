@@ -10,9 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,8 +22,7 @@
                 android:layout_width="266dp"
                 android:layout_height="266dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/ic_launcher_background"
-
+                android:src="@drawable/ic_empty_user"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +34,8 @@
                 android:layout_width="0dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="50dp"
-                android:background="#FED36A"
+                android:layout_marginEnd="10dp"
+                android:background="@color/contact_yellow"
                 android:gravity="center"
                 android:text="MESSAGE"
                 android:textStyle="bold"
@@ -50,8 +48,9 @@
                 android:id="@+id/btn_callButton"
                 android:layout_width="0dp"
                 android:layout_height="45dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="50dp"
-                android:background="#263238"
+                android:background="@color/contact_yellow"
                 android:gravity="center"
                 android:text="CALL"
                 android:textStyle="bold"
@@ -61,7 +60,6 @@
                 app:layout_constraintTop_toBottomOf="@id/img_photo" />
 
             <!--네임 -->
-
             <ImageView
                 android:id="@+id/iv_name"
                 android:layout_width="match_parent"
@@ -79,7 +77,6 @@
                 android:layout_height="24dp"
                 android:layout_marginStart="14dp"
                 android:src="@drawable/detail_name"
-
                 app:layout_constraintBottom_toBottomOf="@id/iv_name"
                 app:layout_constraintStart_toStartOf="@id/iv_name"
                 app:layout_constraintTop_toTopOf="@id/iv_name" />
@@ -96,7 +93,6 @@
                 app:layout_constraintBottom_toBottomOf="@id/iv_name"
                 app:layout_constraintStart_toEndOf="@id/icon_name"
                 app:layout_constraintTop_toTopOf="@id/iv_name" />
-
 
             <!-- 번호-->
             <ImageView
@@ -116,7 +112,6 @@
                 android:layout_height="24dp"
                 android:layout_marginStart="14dp"
                 android:src="@drawable/detail_phone"
-
                 app:layout_constraintBottom_toBottomOf="@id/iv_phoneNumber"
                 app:layout_constraintStart_toStartOf="@id/iv_phoneNumber"
                 app:layout_constraintTop_toTopOf="@id/iv_phoneNumber" />
@@ -152,7 +147,6 @@
                 android:layout_height="24dp"
                 android:layout_marginStart="14dp"
                 android:src="@drawable/detail_email"
-
                 app:layout_constraintBottom_toBottomOf="@id/iv_email"
                 app:layout_constraintStart_toStartOf="@id/iv_email"
                 app:layout_constraintTop_toTopOf="@id/iv_email" />
@@ -188,7 +182,6 @@
                 android:layout_height="24dp"
                 android:layout_marginStart="14dp"
                 android:src="@drawable/detail_check"
-
                 app:layout_constraintBottom_toBottomOf="@id/iv_locale"
                 app:layout_constraintStart_toStartOf="@id/iv_locale"
                 app:layout_constraintTop_toTopOf="@id/iv_locale" />
@@ -227,7 +220,6 @@
                 android:layout_height="24dp"
                 android:layout_marginStart="14dp"
                 android:src="@drawable/detail_thunder"
-
                 app:layout_constraintBottom_toBottomOf="@id/iv_ability"
                 app:layout_constraintStart_toStartOf="@id/iv_ability"
                 app:layout_constraintTop_toTopOf="@id/iv_ability" />
@@ -244,12 +236,6 @@
                 app:layout_constraintBottom_toBottomOf="@id/iv_ability"
                 app:layout_constraintStart_toEndOf="@id/icon_ability"
                 app:layout_constraintTop_toTopOf="@id/iv_ability" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
