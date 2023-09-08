@@ -109,6 +109,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        app:checkedChip="@id/chip_off"
         app:layout_constraintBottom_toTopOf="@id/btn_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -121,36 +122,36 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/dialog_chip_off"
             android:textColor="@color/black"
-            app:chipBackgroundColor="@color/pressed_chip"
-            android:text="@string/dialog_chip_off" />
+            app:chipBackgroundColor="@color/pressed_chip" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_5min"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/dialog_chip_5_minutes"
             android:textColor="@color/black"
-            app:chipBackgroundColor="@color/pressed_chip"
-            android:text="@string/dialog_chip_5_minutes" />
+            app:chipBackgroundColor="@color/pressed_chip" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_10min"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/dialog_chip_10_minutes"
             android:textColor="@color/black"
-            app:chipBackgroundColor="@color/pressed_chip"
-            android:text="@string/dialog_chip_10_minutes" />
+            app:chipBackgroundColor="@color/pressed_chip" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_30min"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/dialog_chip_30_minutes"
             android:textColor="@color/black"
-            app:chipBackgroundColor="@color/pressed_chip"
-            android:text="@string/dialog_chip_30_minutes" />
+            app:chipBackgroundColor="@color/pressed_chip" />
 
     </com.google.android.material.chip.ChipGroup>
 

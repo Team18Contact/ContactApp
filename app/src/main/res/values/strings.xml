@@ -79,4 +79,7 @@
     <string name="dialog_cancel_btn">취소</string>
     <string name="dialog_add_btn">등록</string>
     <string name="dialog_no_info_toast">* 표시가 있는 항목은 전부 입력해주세요.</string>
+
+    <string name="noti_title">연락처 알림</string>
+    <string name="noti_message">에게 연락을 할 시간입니다.</string>
 </resources>

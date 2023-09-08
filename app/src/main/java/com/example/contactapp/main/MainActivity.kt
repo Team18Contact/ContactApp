@@ -1,11 +1,15 @@
 package com.example.contactapp.main
 
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -14,6 +18,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.contactapp.R
@@ -25,6 +30,10 @@ import com.example.contactapp.databinding.ActivityMainBinding
 import com.example.contactapp.databinding.DialogAddContactBinding
 import com.example.contactapp.detail.DetailFragment
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -36,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         viewPager2Adapter.getFragment(0) as? ContactListFragment
     }
 
-    private lateinit var galleryUri: Uri
+    private var galleryUri: Uri = convertToUri(R.drawable.ic_empty_user)
     private val galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if(result.resultCode == Activity.RESULT_OK) {
             galleryUri = result.data?.data ?: convertToUri(R.drawable.ic_empty_user)
@@ -107,31 +116,9 @@ class MainActivity : AppCompatActivity() {
         buildDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         buildDialog.show()
 
-        dialogBinding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.chip_off -> {
-                    dialogBinding.chipOff.setBackgroundColor(ContextCompat.getColor(this, R.color.contact_yellow))
-                    dialogBinding.chipOff.setTextColor(Color.BLACK)
-                }
-                R.id.chip_5min -> {
-                    dialogBinding.chip5min.setBackgroundColor(ContextCompat.getColor(this, R.color.contact_yellow))
-                    dialogBinding.chip5min.setTextColor(Color.BLACK)
-                }
-                R.id.chip_10min -> {
-                    dialogBinding.chip10min.setBackgroundColor(ContextCompat.getColor(this, R.color.contact_yellow))
-                    dialogBinding.chip10min.setTextColor(Color.BLACK)
-                }
-                R.id.chip_30min -> {
-                    dialogBinding.chip30min.setBackgroundColor(ContextCompat.getColor(this, R.color.contact_yellow))
-                    dialogBinding.chip30min.setTextColor(Color.BLACK)
-                }
-            }
-        }
-
         dialogBinding.imgAddProfile.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK).setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
             galleryLauncher.launch(intent)
-
         }
 
         dialogBinding.btnCancel.setOnClickListener {
@@ -149,9 +136,57 @@ class MainActivity : AppCompatActivity() {
                     .show()
             } else {
                 contactListFragment?.addContactList(ContactModel(galleryUri, nameEdt, localeEdt, phoneEdt, emailEdt, abilityEdt))
+                var alarmTime = 0
+                when(dialogBinding.chipGroup.checkedChipId) {
+                    R.id.chip_off -> alarmTime = 0
+                    R.id.chip_5min -> alarmTime = 5 //임시로 5초
+                    R.id.chip_10min -> alarmTime = 10 //임시로 10초
+                    R.id.chip_30min -> alarmTime = 15 //임시로 15초
+                }
+                if(alarmTime != 0) {
+                    Toast.makeText(this@MainActivity, "${nameEdt}님께 연락할 수 있도록 ${alarmTime}분 이후 알람", Toast.LENGTH_SHORT).show()
+                    CoroutineScope(Dispatchers.Default).launch {
+                        delay(alarmTime * 1000L)
+                        setNotification(nameEdt)
+                    }
+                }
                 buildDialog.dismiss()
             }
         }
+    }
+
+    private fun setNotification(nameEdt: String) {
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        val channelId = "channel_id"
+        val builder: NotificationCompat.Builder
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { // Android 8.0 이상
+            val channel = NotificationChannel(
+                channelId,
+                "channel_name",
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                // 채널에 다양한 정보 설정
+                description = "channel_description"
+                setShowBadge(true)
+            }
+            notificationManager.createNotificationChannel(channel)
+            builder = NotificationCompat.Builder(this, channelId)
+        } else { // Android 8.0 이하
+            builder = NotificationCompat.Builder(this)
+        }
+
+        val fullScreenIntent = Intent(this, MainActivity::class.java)
+        val fullScreenPendingIntent = PendingIntent.getActivity(this, 0, fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+
+        builder.run {
+            setSmallIcon(R.drawable.ic_call)
+            setContentTitle(getString(R.string.noti_title))
+            setContentText(nameEdt + getString(R.string.noti_message))
+            setWhen(System.currentTimeMillis())
+            priority = NotificationCompat.PRIORITY_DEFAULT
+            setFullScreenIntent(fullScreenPendingIntent, true)
+        }
+        notificationManager.notify(1, builder.build())
     }
 
     private fun checkPermission() {
