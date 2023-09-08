@@ -22,7 +22,7 @@ class ContactListItemHelper(private val context: Context, private val fragment: 
         dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean
     ) {
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
-            val view = (viewHolder as ContactRecyclerViewAdapter.Holder).linearLayout
+            val view = (viewHolder as ContactRecyclerViewAdapter.RecyclerHolder).linearLayout
             getDefaultUIUtil().onDraw(canvas, recyclerView, view, dX, dY, actionState, isCurrentlyActive)
         }
     }
@@ -32,7 +32,7 @@ class ContactListItemHelper(private val context: Context, private val fragment: 
         viewHolder: RecyclerView.ViewHolder
     ) {
         super.clearView(recyclerView, viewHolder)
-        getDefaultUIUtil().clearView((viewHolder as ContactRecyclerViewAdapter.Holder).linearLayout)
+        getDefaultUIUtil().clearView((viewHolder as ContactRecyclerViewAdapter.RecyclerHolder).linearLayout)
     }
 
     override fun getMovementFlags(
@@ -49,7 +49,7 @@ class ContactListItemHelper(private val context: Context, private val fragment: 
     ): Boolean = false
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        val contactViewHolder = viewHolder as ContactRecyclerViewAdapter.Holder
+        val contactViewHolder = viewHolder as ContactRecyclerViewAdapter.RecyclerHolder
         val phoneNumber = contactViewHolder.contactNumber
 
         if(direction == ItemTouchHelper.RIGHT) {

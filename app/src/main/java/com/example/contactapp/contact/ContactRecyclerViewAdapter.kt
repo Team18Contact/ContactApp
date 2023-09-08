@@ -7,33 +7,80 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contactapp.contact.Constants.convertToBitmap
+import com.example.contactapp.databinding.ContactGridviewItemBinding
 import com.example.contactapp.databinding.ContactRecyclerviewItemBinding
 
-class ContactRecyclerViewAdapter (private val context: Context, private val contactList: MutableList<ContactModel>) : RecyclerView.Adapter<ContactRecyclerViewAdapter.Holder>(){
+class ContactRecyclerViewAdapter (private val context: Context, private val contactList: MutableList<ContactModel>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+    companion object {
+        const val ITEM_VIEW_TYPE_GRID = 0
+        const val ITEM_VIEW_TYPE_LTR = 1
+        const val ITEM_VIEW_TYPE_RTL = 2
+    }
+
     interface ItemClick {
         fun onClick(view : View, position : Int)
     }
 
     var itemClick : ItemClick? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {//
-        val binding = ContactRecyclerviewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return Holder(context, binding) // holder return
+    private var isGridLayout: Boolean = false
+    fun isGridLayout(bool: Boolean) {
+        this.isGridLayout = bool
     }
 
-    override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(contactList[position])
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when(viewType) {
+            ITEM_VIEW_TYPE_GRID -> {
+                val binding = ContactGridviewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                GridHolder(binding)
+            }
+            else -> {
+                val binding = ContactRecyclerviewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                RecyclerHolder(binding)
+            }
+        }
+    }
 
-        if(position % 2 == 0) {
-            holder.linearLayout.layoutDirection = View.LAYOUT_DIRECTION_LTR
-        } else {
-            holder.linearLayout.layoutDirection = View.LAYOUT_DIRECTION_RTL
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when(holder) {
+            is GridHolder -> holder.bind(contactList[position])
+            is RecyclerHolder -> {
+                holder.bind(contactList[position])
+                if(position % 2 == 0) {
+                    holder.linearLayout.layoutDirection = View.LAYOUT_DIRECTION_LTR
+                } else {
+                    holder.linearLayout.layoutDirection = View.LAYOUT_DIRECTION_RTL
+                }
+            }
         }
     }
 
     override fun getItemCount(): Int = contactList.size
 
-    inner class Holder(private val context: Context, private val binding: ContactRecyclerviewItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    override fun getItemViewType(position: Int): Int {
+        return if(isGridLayout) {
+            ITEM_VIEW_TYPE_GRID
+        } else {
+            if(position % 2 == 0) {
+                ITEM_VIEW_TYPE_LTR
+            } else {
+                ITEM_VIEW_TYPE_RTL
+            }
+        }
+    }
+
+    inner class GridHolder(private val binding: ContactGridviewItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(contact: ContactModel) = with(binding) {
+            itemView.setOnClickListener {
+                itemClick?.onClick(it, adapterPosition)
+            }
+            imgProfile.setImageBitmap(convertToBitmap(context, contact.profile))
+            txtName.text = contact.name
+            txtAbility.text = contact.ability
+        }
+    }
+
+    inner class RecyclerHolder(private val binding: ContactRecyclerviewItemBinding) : RecyclerView.ViewHolder(binding.root) {
         lateinit var linearLayout: LinearLayout
         lateinit var contactNumber: String
         fun bind(contact: ContactModel) = with(binding) {

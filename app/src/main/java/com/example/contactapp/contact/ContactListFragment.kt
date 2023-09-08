@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contactapp.R
 import com.example.contactapp.contact.Constants.ITEM_OBJECT
@@ -22,10 +24,6 @@ class ContactListFragment : Fragment() {
 
     private val recyclerViewAdapter by lazy {
         ContactRecyclerViewAdapter(requireContext(), dataList)
-    }
-
-    private val gridViewAdapter by lazy {
-        ContactGridViewAdapter(requireContext(), dataList)
     }
 
     private val contactRealList by lazy {
@@ -49,7 +47,10 @@ class ContactListFragment : Fragment() {
     }
 
     private fun initView() = with(binding) {
+        recyclerViewContact.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewAdapter.isGridLayout(false)
         recyclerViewContact.adapter = recyclerViewAdapter
+
         val itemHelperCallback = ContactListItemHelper(requireContext(), this@ContactListFragment)
         val itemTouchHelper = ItemTouchHelper(itemHelperCallback)
         itemTouchHelper.attachToRecyclerView(recyclerViewContact)
@@ -63,12 +64,6 @@ class ContactListFragment : Fragment() {
         recyclerViewRealAdapter.itemClick = object : ContactRecyclerViewAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 bundleToDetailFragment(contactRealList[position])
-            }
-        }
-
-        gridViewAdapter.onItemClickListener = object: ContactGridViewAdapter.OnItemClickListener {
-            override fun onItemClick(contact: ContactModel) {
-                bundleToDetailFragment(contact)
             }
         }
     }
@@ -97,18 +92,19 @@ class ContactListFragment : Fragment() {
     }
 
     fun showGridView() = with(binding) {
-        gridViewContact.adapter = gridViewAdapter
-        recyclerViewContact.visibility = View.GONE
-        gridViewContact.visibility = View.VISIBLE
+        recyclerViewContact.layoutManager = GridLayoutManager(requireContext(), 3)
+        recyclerViewAdapter.isGridLayout(true)
+        recyclerViewContact.adapter = recyclerViewAdapter
+
     }
 
     fun showRecyclerView(num: Int) = with(binding) {
+        recyclerViewContact.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewAdapter.isGridLayout(false)
         when(num) {
             0 -> recyclerViewContact.adapter = recyclerViewAdapter
             1 -> recyclerViewContact.adapter = recyclerViewRealAdapter
         }
-        recyclerViewContact.visibility = View.VISIBLE
-        gridViewContact.visibility = View.GONE
     }
 
     private fun getContacts(): MutableList<ContactModel> {

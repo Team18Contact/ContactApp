@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.contactapp.R
@@ -14,15 +15,15 @@ class SignInActivity : AppCompatActivity() {
 
     private lateinit var editTextEmailAddress: EditText
     private lateinit var editTextPassword: EditText
-    private lateinit var buttonLogin: Button
-    private lateinit var buttonSignUp: Button
+    private lateinit var buttonLogin: TextView
+    private lateinit var buttonSignUp: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
-        editTextEmailAddress = findViewById(R.id.editTextEmailAddress)
-        editTextPassword = findViewById(R.id.editTextPassword)
+        editTextEmailAddress = findViewById(R.id.et_login_id)
+        editTextPassword = findViewById(R.id.et_login_password)
         buttonLogin = findViewById(R.id.buttonLogin)
         buttonSignUp = findViewById(R.id.buttonSignUp)
 
