@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.contactapp.R
 import com.example.contactapp.contact.Constants.convertToBitmap
 import com.example.contactapp.databinding.ContactGridviewItemBinding
 import com.example.contactapp.databinding.ContactRecyclerviewItemBinding
@@ -22,6 +23,7 @@ class ContactRecyclerViewAdapter (private val context: Context, private val cont
     }
 
     var itemClick : ItemClick? = null
+    var itemLikeClick: ItemClick? = null
 
     private var isGridLayout: Boolean = false
     fun isGridLayout(bool: Boolean) {
@@ -91,15 +93,27 @@ class ContactRecyclerViewAdapter (private val context: Context, private val cont
                 itemClick?.onClick(it, adapterPosition)
             }
 
+            imgLike.setOnClickListener {
+                itemLikeClick?.onClick(it, adapterPosition)
+            }
+
             imgProfile.setImageBitmap(convertToBitmap(context, contact.profile))
             val localeTxt = if(contact.locale.isNotEmpty()) " (${contact.locale}) " else contact.locale
             val abilityTxt = if(contact.ability.isNotEmpty()) "- ${contact.ability}" else contact.ability
             txtInfo.text = "${contact.name}$localeTxt$abilityTxt"
+            imgLike.setImageResource(if(contact.isHeart == 1) R.drawable.ic_full_heart else R.drawable.ic_empty_heart)
         }
     }
 
     fun addItem(contact: ContactModel) {
         contactList.add(contact)
         notifyItemChanged(contactList.size - 1)
+    }
+
+    fun updateItem(contact: ContactModel, position: Int) {
+        contactList[position] = if(contact.isHeart == 1) contact.copy(isHeart = 0) else contact.copy(isHeart = 1)
+        contactList.sortWith(compareBy ({-it.isHeart}, {it.name}))
+//        notifyItemChanged(position)
+        notifyDataSetChanged()
     }
 }

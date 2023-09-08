@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         val checkAbility = intent.getStringExtra("userAbility") ?: "ability"
 
         val detailFragment = viewPager2Adapter.getFragment(1) as? DetailFragment
-        detailFragment?.setData(ContactModel(convertToUri(R.drawable.ic_empty_user), checkName, checkLocale, checkTel, checkEmailAddress, checkAbility))
+        detailFragment?.setData(ContactModel(convertToUri(R.drawable.ic_empty_user), checkName, checkLocale, checkTel, checkEmailAddress, checkAbility, 0))
 
         viewPager2.adapter = viewPager2Adapter
 
@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.dialog_no_info_toast), Toast.LENGTH_SHORT)
                     .show()
             } else {
-                contactListFragment?.addContactList(ContactModel(galleryUri, nameEdt, localeEdt, phoneEdt, emailEdt, abilityEdt))
+                contactListFragment?.addContactList(ContactModel(galleryUri, nameEdt, localeEdt, phoneEdt, emailEdt, abilityEdt, 0))
                 var alarmTime = 0
                 when(dialogBinding.chipGroup.checkedChipId) {
                     R.id.chip_off -> alarmTime = 0
@@ -151,6 +151,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 buildDialog.dismiss()
+                galleryUri = convertToUri(R.drawable.ic_empty_user)
             }
         }
     }
