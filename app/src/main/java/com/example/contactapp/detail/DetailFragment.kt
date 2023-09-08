@@ -3,16 +3,14 @@ package com.example.contactapp.detail
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
-import com.example.contactapp.contact.Constants
 import com.example.contactapp.contact.Constants.ITEM_OBJECT
+import com.example.contactapp.contact.Constants.convertToBitmap
 import com.example.contactapp.contact.ContactModel
-import com.example.contactapp.contact.ContactModelDB
 import com.example.contactapp.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
@@ -38,18 +36,12 @@ class DetailFragment : Fragment() {
 
     private fun initView() = with(binding) {
         val receiveData = data ?: receiveData
-        imgPhoto.setImageDrawable(receiveData?.let {
-            ResourcesCompat.getDrawable(
-                resources,
-                it.profile,
-                null
-            )
-        })
-        tvName.text = receiveData?.name
-        tvPhoneNumber.text = receiveData?.phoneNum
-        tvEmail.text = receiveData?.email
-        tvLocale.text = receiveData?.locale
-        tvAbility.text = receiveData?.ability
+        imgPhoto.setImageBitmap(convertToBitmap(requireContext(), receiveData.profile))
+        tvName.text = receiveData.name
+        tvPhoneNumber.text = receiveData.phoneNum
+        tvEmail.text = receiveData.email
+        tvLocale.text = receiveData.locale
+        tvAbility.text = receiveData.ability
 
         /**
          *  data 값이 null이면 receiveData를 받아오니까, 이 경우가 마이페이지 데이터가 보이는 경우이므로
@@ -74,8 +66,6 @@ class DetailFragment : Fragment() {
             val sendUriSwipedPerson = Uri.parse("smsto:${phoneNumber}")
             startActivity(Intent(Intent.ACTION_SENDTO, sendUriSwipedPerson))
         } // 디테일 페이지 버튼 기능 완료
-
-
     }
 
     fun setData(contact: ContactModel) {

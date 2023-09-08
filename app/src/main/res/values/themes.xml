@@ -7,6 +7,10 @@
 
     <style name="Theme.ContactApp" parent="Base.Theme.ContactApp" />
 
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/contact_lightYellow</item>
+    </style>
+
     <style name="btnFab">
         <item name="cornerSize">50%</item>
     </style>

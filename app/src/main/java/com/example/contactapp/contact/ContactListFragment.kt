@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contactapp.R
 import com.example.contactapp.contact.Constants.ITEM_OBJECT
+import com.example.contactapp.contact.Constants.convertToUri
 import com.example.contactapp.contact.ContactModelDB.dataList
 import com.example.contactapp.databinding.FragmentContactListBinding
 import com.example.contactapp.detail.DetailFragment
@@ -22,7 +23,7 @@ class ContactListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val recyclerViewAdapter by lazy {
-        ContactRecyclerViewAdapter(dataList)
+        ContactRecyclerViewAdapter(requireContext(), dataList)
     }
 
     private val contactRealList by lazy {
@@ -30,7 +31,7 @@ class ContactListFragment : Fragment() {
     }
 
     private val recyclerViewRealAdapter by lazy {
-        ContactRecyclerViewAdapter(contactRealList)
+        ContactRecyclerViewAdapter(requireContext(), contactRealList)
     }
 
     override fun onCreateView(
@@ -54,6 +55,12 @@ class ContactListFragment : Fragment() {
         val itemTouchHelper = ItemTouchHelper(itemHelperCallback)
         itemTouchHelper.attachToRecyclerView(recyclerViewContact)
 
+        recyclerViewAdapter.itemLikeClick = object : ContactRecyclerViewAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                updateContactList(dataList[position], position)
+            }
+        }
+
         recyclerViewAdapter.itemClick = object : ContactRecyclerViewAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 bundleToDetailFragment(dataList[position])
@@ -65,6 +72,14 @@ class ContactListFragment : Fragment() {
                 bundleToDetailFragment(contactRealList[position])
             }
         }
+    }
+
+    fun addContactList(contact: ContactModel) {
+        recyclerViewAdapter.addItem(contact)
+    }
+
+    fun updateContactList(contact: ContactModel, position: Int) {
+        recyclerViewAdapter.updateItem(contact, position)
     }
 
     fun updateSwipeItem(viewHolder: RecyclerView.ViewHolder) {
@@ -120,7 +135,7 @@ class ContactListFragment : Fragment() {
 //            while(cursor.moveToNext() && count < 15) {
 //                count++ //임의로 15개까지만 출력
             while(cursor.moveToNext()) {
-                contactList.add(ContactModel(R.drawable.ic_empty_user, cursor.getString(1), "", cursor.getString(2), "", ""))
+                contactList.add(ContactModel(convertToUri(R.drawable.ic_empty_user), cursor.getString(1), "", cursor.getString(2), "", "", 0))
             }
         }
         return contactList
