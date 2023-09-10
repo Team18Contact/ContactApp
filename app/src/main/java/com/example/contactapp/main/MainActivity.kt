@@ -217,8 +217,11 @@ class MainActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
+        if (grantResults.isNotEmpty()
+            && grantResults[0] == PackageManager.PERMISSION_GRANTED
             && grantResults[1] == PackageManager.PERMISSION_GRANTED
+            && grantResults[2] == PackageManager.PERMISSION_GRANTED
+            && grantResults[3] == PackageManager.PERMISSION_GRANTED
         ) {
             initView()
         } else {
