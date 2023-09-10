@@ -1,9 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.ContactApp" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.ContactApp" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
     <style name="Theme.ContactApp" parent="Base.Theme.ContactApp" />
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/contact_lightYellow</item>
+    </style>
+
+    <style name="btnFab">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

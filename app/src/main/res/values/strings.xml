@@ -1,3 +1,86 @@
 <resources>
     <string name="app_name">ContactApp</string>
+
+    <string name="main_fab_btn_description">FabBtn to add contact</string>
+    <string name="main_tab_title_contact">CONTACT</string>
+    <string name="main_tab_title_mypage">MY PAGE</string>
+    <string name="main_toolbar_title">무빙 출연진 연락처</string>
+
+    <string name="mypage_todo_edittext_hint">할일 추가하기</string>
+    <string name="mypage_todo_textview_title">할일 목록</string>
+    <string name="button_done">Log In</string>
+    <string name="button_done2">SIGN UP</string>
+    <string name="butotn_input">입력</string>
+    <string name="mypage_overlap_todo">이미 등록된 할일이 목록에 존재합니다.</string>
+    <string name="mypage_edittext_null">할일을 추가하시려면 텍스트를 입력해주세요!</string>
+
+    <string name="intent_userImage">userImage</string>
+    <string name="intent_userNameText">userName</string>
+    <string name="intent_userPositionText">userPosition</string>
+    <string name="intent_userTelText">userTel</string>
+
+
+    <string name="_5_10">5~10자의 영어(대소문자)와 숫자만 입력하세요.</string>
+    <string name="_8_15">8~15자의 영어(대소문자), 숫자, 특수문자를 포함하세요.</string>
+    <string name="_10_11">10~11자의 숫자만 입력하세요.</string>
+    <string name="kor">한글 또는 영어만 입력하세요.</string>
+    <string name="info">입력되지 않은 정보가 있습니다</string>
+
+    <string name="signup_cancel1">취소 되었습니다.</string>
+
+    //detail
+    <string name="warningBack">작성 중인 내용이 삭제될 수도 있습니다.</string>
+    <string name="warningNull">입력된 값이 없습니다.</string>
+    <string name="noticeComment">댓글을 입력하세요.</string>
+    <string name="comment">댓글</string>
+
+    //signIn
+    <string name="noticeTeam">Welcome Back!</string>
+    <string name="name">Full Name</string>
+    <string name="emailaddress">Email</string>
+    <string name="password">Password</string>
+    <string name="tel">TelPhone</string>
+    <string name="logIn">LOGIN</string>
+    <string name="signUp">SIGN UP</string>
+    <string name="checkNameLocale">이름/암호명을 확인해주세요</string>
+    <string name="successLogin">로그인 성공</string>
+
+    //writePage
+    <string name="subject">제목</string>
+    <string name="inputContents">내용을 입력해주세요</string>
+    <string name="cancel">취소</string>
+
+    //main
+    <string name="nameColon">이름 : </string>
+    <string name="position">Ability</string>
+    <string name="positionColon">직책 : </string>
+    <string name="teamMember">팀 멤버</string>
+    <string name="teamNoticeBoard">팀 게시판</string>
+
+    //signUp
+    <string name="notice2Team">SIGN UP</string>
+    <string name="inputName">이름을 입력하세요.</string>
+    <string name="inputID">이메일을 입력하세요.</string>
+    <string name="inputPassword">비밀번호를 입력하세요.</string>
+    <string name="inputPosition">(입력 안해도 됨)</string>
+    <string name="inputTel">전화번호를 입력하세요.</string>
+    <string name="locale">Locale</string>
+    <string name="inputLocale">지역명</string>
+
+    //dialog
+    <string name="dialog_name_edt">이름*</string>
+    <string name="dialog_phone_edt">전화번호*</string>
+    <string name="dialog_email_edt">이메일*</string>
+    <string name="dialog_locale_edt">지역*</string>
+    <string name="dialog_ability_edt">능력</string>
+    <string name="dialog_chip_off">OFF</string>
+    <string name="dialog_chip_5_minutes">5분 뒤 알림</string>
+    <string name="dialog_chip_10_minutes">10분 뒤 알림</string>
+    <string name="dialog_chip_30_minutes">30분 뒤 알림</string>
+    <string name="dialog_cancel_btn">취소</string>
+    <string name="dialog_add_btn">등록</string>
+    <string name="dialog_no_info_toast">* 표시가 있는 항목은 전부 입력해주세요.</string>
+
+    <string name="noti_title">연락처 알림</string>
+    <string name="noti_message">에게 연락을 할 시간입니다.</string>
 </resources>

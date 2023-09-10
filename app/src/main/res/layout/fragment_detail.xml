@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#20222C"
+    tools:context="detail.DetailFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- 디테일, 마이페이지  -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_photo"
+                android:layout_width="266dp"
+                android:layout_height="266dp"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/ic_empty_user"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/btn_messageButton"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/contact_yellow"
+                android:gravity="center"
+                android:text="MESSAGE"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toStartOf="@id/btn_callButton"
+                app:layout_constraintStart_toStartOf="@id/iv_name"
+                app:layout_constraintTop_toBottomOf="@id/img_photo" />
+
+            <TextView
+                android:id="@+id/btn_callButton"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="50dp"
+                android:background="@color/contact_yellow"
+                android:gravity="center"
+                android:text="CALL"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/iv_name"
+                app:layout_constraintStart_toEndOf="@id/btn_messageButton"
+                app:layout_constraintTop_toBottomOf="@id/img_photo" />
+
+            <!--네임 -->
+            <ImageView
+                android:id="@+id/iv_name"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="26dp"
+                android:background="#455A64"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_messageButton" />
+
+            <ImageView
+                android:id="@+id/icon_name"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="14dp"
+                android:src="@drawable/detail_name"
+                app:layout_constraintBottom_toBottomOf="@id/iv_name"
+                app:layout_constraintStart_toStartOf="@id/iv_name"
+                app:layout_constraintTop_toTopOf="@id/iv_name" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:gravity="center_vertical"
+                android:text="이름"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_name"
+                app:layout_constraintStart_toEndOf="@id/icon_name"
+                app:layout_constraintTop_toTopOf="@id/iv_name" />
+
+            <!-- 번호-->
+            <ImageView
+                android:id="@+id/iv_phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="26dp"
+                android:background="#455A64"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_name" />
+
+            <ImageView
+                android:id="@+id/icon_phoneNumber"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="14dp"
+                android:src="@drawable/detail_phone"
+                app:layout_constraintBottom_toBottomOf="@id/iv_phoneNumber"
+                app:layout_constraintStart_toStartOf="@id/iv_phoneNumber"
+                app:layout_constraintTop_toTopOf="@id/iv_phoneNumber" />
+
+            <TextView
+                android:id="@+id/tv_phoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:gravity="center_vertical"
+                android:text="010-0000-0000"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_phoneNumber"
+                app:layout_constraintStart_toEndOf="@id/icon_phoneNumber"
+                app:layout_constraintTop_toTopOf="@id/iv_phoneNumber" />
+
+            <!-- 이메일-->
+            <ImageView
+                android:id="@+id/iv_email"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="26dp"
+                android:background="#455A64"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_phoneNumber" />
+
+            <ImageView
+                android:id="@+id/icon_email"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="14dp"
+                android:src="@drawable/detail_email"
+                app:layout_constraintBottom_toBottomOf="@id/iv_email"
+                app:layout_constraintStart_toStartOf="@id/iv_email"
+                app:layout_constraintTop_toTopOf="@id/iv_email" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:gravity="center_vertical"
+                android:text="Test@naver.com"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_email"
+                app:layout_constraintStart_toEndOf="@id/icon_email"
+                app:layout_constraintTop_toTopOf="@id/iv_email" />
+
+            <!-- locale-->
+            <TextView
+                android:id="@+id/iv_locale"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="26dp"
+                android:background="#455A64"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_email" />
+
+            <ImageView
+                android:id="@+id/icon_locale"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="14dp"
+                android:src="@drawable/detail_check"
+                app:layout_constraintBottom_toBottomOf="@id/iv_locale"
+                app:layout_constraintStart_toStartOf="@id/iv_locale"
+                app:layout_constraintTop_toTopOf="@id/iv_locale" />
+
+            <TextView
+                android:id="@+id/tv_locale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:gravity="center_vertical"
+                android:text="Locale"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_locale"
+                app:layout_constraintStart_toEndOf="@id/icon_locale"
+                app:layout_constraintTop_toTopOf="@id/iv_locale" />
+
+            <!-- ability -->
+
+            <TextView
+                android:id="@+id/iv_ability"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginBottom="60dp"
+                android:background="#455A64"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_locale" />
+
+            <ImageView
+                android:id="@+id/icon_ability"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="14dp"
+                android:src="@drawable/detail_thunder"
+                app:layout_constraintBottom_toBottomOf="@id/iv_ability"
+                app:layout_constraintStart_toStartOf="@id/iv_ability"
+                app:layout_constraintTop_toTopOf="@id/iv_ability" />
+
+            <TextView
+                android:id="@+id/tv_ability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:gravity="center_vertical"
+                android:text="Ability"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_ability"
+                app:layout_constraintStart_toEndOf="@id/icon_ability"
+                app:layout_constraintTop_toTopOf="@id/iv_ability" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
