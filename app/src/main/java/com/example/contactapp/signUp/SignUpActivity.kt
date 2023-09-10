@@ -171,12 +171,9 @@ class SignUpActivity : AppCompatActivity() {
             //수정하겠습니다.
             intent.putExtra("userName", name)
             intent.putExtra("userEmailAddress", emailaddress)
-            intent.putExtra("userPw", pw)
             intent.putExtra("userTel", tel)
             intent.putExtra("userLocale", locale)
             intent.putExtra("userAbility", ability)
-            intent.putExtra("userImage",imgSet)
-
             startActivity(intent)
             finish()
         }
