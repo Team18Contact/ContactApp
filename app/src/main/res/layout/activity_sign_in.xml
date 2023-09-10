@@ -8,6 +8,14 @@
     android:orientation="vertical"
     android:padding="0dp">
 
+    <ImageView
+        android:id="@+id/login_glide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"/>
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
+                android:padding="20dp"
                 android:gravity="center"
                 android:src="@drawable/login_moving_logo"
 
@@ -42,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginHorizontal="20dp"
+
 
                 android:layout_marginTop="26dp"
                 android:text="@string/emailaddress"
@@ -61,10 +71,11 @@
                 android:layout_height="55dp"
 
                 android:layout_marginHorizontal="20dp"
-                android:background="#455A64"
+                android:background="#4D455A64"
                 android:hint="@string/emailaddress"
                 android:inputType="text"
                 android:padding="16dp"
+
 
                 android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +111,7 @@
                 android:layout_height="55dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="32dp"
-                android:background="#455A64"
+                android:background="#4D455A64"
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:padding="16dp"
@@ -115,7 +126,7 @@
                 android:layout_height="55dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="60dp"
-                android:background="#FED36A"
+                android:background="#99FED36A"
 
 
                 android:gravity="center"
@@ -123,10 +134,10 @@
                 android:text="@string/logIn"
                 android:textSize="20dp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/buttonSignUp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_login_password"
-                app:layout_constraintBottom_toTopOf="@id/buttonSignUp"
 
 
                 />
@@ -142,7 +153,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="26dp"
                 android:layout_marginBottom="26dp"
-                android:background="@color/login_blue"
+                android:background="#991F63AA"
                 android:textStyle="bold"
 
                 android:text="@string/signUp"
