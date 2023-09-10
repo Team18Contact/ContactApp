@@ -17,7 +17,7 @@ Android 앱개발 숙련 프로젝트 18조 팀 과제 제출입니다.
 
 
 
-[프로젝트 Notion 페이지]([18조 (notion.so)](https://www.notion.so/18-bc8dc20c3f994a419f2b01b67552e78d))
+[프로젝트 Notion 페이지](https://www.notion.so/18-bc8dc20c3f994a419f2b01b67552e78d)
 
 [앱 시연 연상 Youtube (링크 첨부 예정)]()
 
