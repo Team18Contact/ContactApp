@@ -1,13 +1,11 @@
-package com.example.contactapp.signIn
+package com.example.contactapp
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.example.contactapp.R
 import com.example.contactapp.databinding.ActivitySplashBinding
-import com.example.contactapp.signUp.SignUpActivity
+import com.example.contactapp.signIn.SignInActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -24,11 +22,5 @@ class SplashActivity : AppCompatActivity() {
         splashImage.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
         }
-
-
-
-
-
-
     }
 }

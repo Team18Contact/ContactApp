@@ -2,6 +2,7 @@ package com.example.contactapp.signIn
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,8 +16,8 @@ import com.example.contactapp.signUp.SignUpActivity
 
 class SignInActivity : AppCompatActivity() {
 
-    private lateinit var editTextEmailAddress: EditText
-    private lateinit var editTextPassword: EditText
+    private lateinit var editTextName: EditText
+    private lateinit var editTextLocale: EditText
     private lateinit var buttonLogin: TextView
     private lateinit var buttonSignUp: TextView
 
@@ -29,48 +30,36 @@ class SignInActivity : AppCompatActivity() {
         Glide.with(this).load(R.raw.login_background).into(loginGlide)
         //
 
-        editTextEmailAddress = findViewById(R.id.et_login_id)
-        editTextPassword = findViewById(R.id.et_login_password)
+        editTextName = findViewById(R.id.et_login_name)
+        editTextLocale = findViewById(R.id.et_login_locale)
         buttonLogin = findViewById(R.id.buttonLogin)
         buttonSignUp = findViewById(R.id.buttonSignUp)
 
         buttonLogin.setOnClickListener {
 
-            val login_name = editTextEmailAddress.text.toString()   // 이름, 암호명으로 로그인 변경 작업
-            val password = editTextPassword.text.toString()
-
             val checkName = intent.getStringExtra("userName") ?: "name"
             val checkEmailAddress = intent.getStringExtra("userEmailAddress") ?: "emailaddress"
-            val checkPw = intent.getStringExtra("userPw") ?: "pw"
             val checkTel = intent.getStringExtra("userTel") ?: "tel"
             val checkLocale = intent.getStringExtra("userLocale") ?: "locale"
             val checkAbility = intent.getStringExtra("userAbility") ?: "ability"
-            val checkImage = intent.getIntExtra("userImage", 0)
 
+            val loginName = editTextName.text.toString()   // 이름, 암호명으로 로그인 변경 작업
+            val loginLocale = editTextLocale.text.toString()
 
-            if (login_name.isEmpty() || password.isEmpty()) {
-
-
-                Toast.makeText(this, "아이디/비밀번호 둘 중 하나가 입력이 비어있습니다.", Toast.LENGTH_SHORT).show()
-            } else if((login_name.equals(checkName)) && (password.equals(checkLocale))){
-
+            if (loginName.isEmpty() || loginLocale.isEmpty()) {
+                Toast.makeText(this, "이름/암호명 모두 입력해주세요.", Toast.LENGTH_SHORT).show()
+            } else if((loginName == checkName) && (loginLocale == checkLocale)){
                 Toast.makeText(this, R.string.successLogin, Toast.LENGTH_SHORT).show()
-
-
                 val intent = Intent(this, MainActivity::class.java)
-
                 intent.putExtra("userName", checkName)
                 intent.putExtra("userEmailAddress", checkEmailAddress)
-                intent.putExtra("userPw", checkPw)
                 intent.putExtra("userTel", checkTel)
                 intent.putExtra("userAbility", checkAbility)
                 intent.putExtra("userLocale", checkLocale)
-                intent.putExtra("userImage", checkImage)
                 startActivity(intent)
                 finish()
-            }
-            else{
-                Toast.makeText(this, R.string.checkIDPassword, Toast.LENGTH_SHORT).show()
+            } else{
+                Toast.makeText(this, R.string.checkNameLocale, Toast.LENGTH_SHORT).show()
             }
         }
 

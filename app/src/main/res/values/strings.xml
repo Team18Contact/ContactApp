@@ -36,12 +36,13 @@
 
     //signIn
     <string name="noticeTeam">Welcome Back!</string>
-    <string name="emailaddress">이름</string>
-    <string name="password">암호명</string>
+    <string name="name">Full Name</string>
+    <string name="emailaddress">Email</string>
+    <string name="password">Password</string>
     <string name="tel">TelPhone</string>
     <string name="logIn">LOGIN</string>
     <string name="signUp">SIGN UP</string>
-    <string name="checkIDPassword">아이디/비밀번호를 확인해주세요</string>
+    <string name="checkNameLocale">이름/암호명을 확인해주세요</string>
     <string name="successLogin">로그인 성공</string>
 
     //writePage
@@ -50,7 +51,6 @@
     <string name="cancel">취소</string>
 
     //main
-    <string name="name">Full name</string>
     <string name="nameColon">이름 : </string>
     <string name="position">Ability</string>
     <string name="positionColon">직책 : </string>
@@ -59,6 +59,7 @@
 
     //signUp
     <string name="notice2Team">SIGN UP</string>
+    <string name="inputName">이름을 입력하세요.</string>
     <string name="inputID">이메일을 입력하세요.</string>
     <string name="inputPassword">비밀번호를 입력하세요.</string>
     <string name="inputPosition">(입력 안해도 됨)</string>
