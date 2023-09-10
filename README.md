@@ -1,15 +1,7 @@
-# Project for Education : ContactApp
-
 본 프로젝트는 안드로이드 교육 과정에 있어서, 학습을 목적으로 만들어진 Android App 임을 밝힙니다!
 
-
-
-
-
-
 ---
-
-
+# Project for Education : ContactApp
 
 
 
@@ -32,6 +24,20 @@ Android 앱개발 숙련 프로젝트 18조 팀 과제 제출입니다.
 | 김민우 | 팀원 | https://github.com/mwkimm     |
 | 김소현 | 팀원 | https://github.com/sinw212    |
 | 전환휘 | 팀원 | https://github.com/dashboard  |
+
+## 구현 사항 목록
+
+| 구현 여부 | 구분 | 기능                                                       |
+| :-------: | ---- | ---------------------------------------------------------- |
+|     O     | 필수 | TabLayout 와 ViewPager                                     |
+|     O     | 필수 | 연락처 리스트 (ContactListFragment)                        |
+|     O     | 필수 | 연락처 추가 (AddContactDialog or AddContactDialogFragment) |
+|     O     | 필수 | 상세 정보 (ContactDetailFragment)                          |
+|     O     | 필수 | 마이 페이지 (MyPageFragment)                               |
+|     O     | 선택 | ItemViewType 변경 적용                                     |
+|     O     | 선택 | Event 시간에 맞춰 Notification 표시                        |
+|     O     | 선택 | Swipe-to-Action                                            |
+|     O     | 선택 | 실제 폰에 있는 연락처 불러오기                             |
 
 
 
@@ -95,11 +101,15 @@ Android 앱개발 숙련 프로젝트 18조 팀 과제 제출입니다.
 
 ### 마이 페이지, 디테일 페이지 (DetailFragment)
 <img src="https://github.com/Team18Contact/ContactApp/assets/139109345/d1ce85b7-1eed-4cf2-bb26-96c0fbcf6536" width="200" height="400"/>
-<img src="https://github.com/Team18Contact/ContactApp/assets/139109345/a981e693-fa3a-4514-98e6-29df79847f90" width="200" height="400"/>
-
 
 * 마이페이지 화면 (디테일페이지 View 재사용)
 * 마이페이지 화면에서는 메세지, 콜 버튼 안 보이게 적용
 * 로그인 한 계정 정보 출력
+
+<img src="https://github.com/Team18Contact/ContactApp/assets/139109345/a981e693-fa3a-4514-98e6-29df79847f90" width="200" height="400"/>
+
+
+* 선택한 사람의 연락처 정보 확인
+* 메세지, 콜 버튼으로 문자 및 통화 가능 ( Intent.ACTION_CALL, ACTION_SENDTO 사용 )
 
 
