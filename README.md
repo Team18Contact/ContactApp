@@ -75,28 +75,39 @@ Android 앱개발 숙련 프로젝트 18조 팀 과제 제출입니다.
 
 
 ### 메인 페이지 (MainActivity)
-<img src="https://github.com/Team18Contact/ContactApp/assets/139109345/6f52115f-ec5d-4319-8ecb-0cd2efdefdb6" width="200" height="400"/>
-<img src="https://github.com/Team18Contact/ContactApp/assets/139109345/badeed50-6758-4fa0-874c-2f47a153f127" width="200" height="400"/>
-<img src="https://github.com/Team18Contact/ContactApp/assets/139109345/9373240d-bbb9-464d-a494-c1ecc886d7f8" width="200" height="400"/>
-<img src="https://github.com/Team18Contact/ContactApp/assets/139109345/d77c0eb3-753c-44ca-bffd-8a51483b2360" width="200" height="400"/>
-
 * 메인 화면 (TabLayout X ViewPager2)
 * 갤러리 접근, 주소록 접근, 전화걸기 기능 권한 허용 여부 Dialog 출력
+<img src="https://github.com/Team18Contact/ContactApp/assets/139109345/6f52115f-ec5d-4319-8ecb-0cd2efdefdb6" width="200" height="400"/>
+<img src="https://github.com/Team18Contact/ContactApp/assets/139109345/badeed50-6758-4fa0-874c-2f47a153f127" width="200" height="400"/>
+
 * 연락처 리스트 화면
 * 더미데이터 RecyclerView 출력
 * 홀/짝에 맞춰 LTR/RTL 출력
 * 각 항목 클릭 시 DetailFragment 이동
-* 메세지 보내기, 전화걸기 기능
-* 왼쪽에서 오른쪽으로 Swipe 기능 활용하여 전화걸기 기능
 * 좋아요 클릭 시, 좋아요 항목 상단 우선 위치 (이름순 정렬)
 * 우측상단 GridView, ListView 타입 선택 가능
 * ListView 아이콘 롱 클릭 시, 실제 연락처 불러오기 기능
+
+<img src="https://github.com/Team18Contact/ContactApp/assets/139109345/9373240d-bbb9-464d-a494-c1ecc886d7f8" width="200" height="400"/>
+
 * Floating 버튼 클릭 시, 연락처 추가 Dialog 출력
-* 갤러리 연동
+* 갤러리 연동하여 저장소에 있는 사진 추가 가능
 * 입력란 예외처리
 * Notification 생성 가능 (시연을 위해 임의로 5분 > 5초로 수정)
 * Notification 클릭 시, 연락처 리스트 화면 이동
 * 연락처 추가 시, 이름순으로 자동 정렬되어 추가
+<img src="https://github.com/Team18Contact/ContactApp/assets/139109345/d77c0eb3-753c-44ca-bffd-8a51483b2360" width="200" height="400"/>
+
+* 왼쪽에서 오른쪽으로 Swipe 기능 활용하여 전화걸기 기능
+
+
+
+
+
+
+
+
+
 
 
 ### 마이 페이지, 디테일 페이지 (DetailFragment)
