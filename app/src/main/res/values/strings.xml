@@ -36,8 +36,8 @@
 
     //signIn
     <string name="noticeTeam">Welcome Back!</string>
-    <string name="emailaddress">Email Address</string>
-    <string name="password">Password</string>
+    <string name="emailaddress">이름</string>
+    <string name="password">암호명</string>
     <string name="tel">TelPhone</string>
     <string name="logIn">LOGIN</string>
     <string name="signUp">SIGN UP</string>
